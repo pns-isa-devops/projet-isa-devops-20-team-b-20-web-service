@@ -33,7 +33,7 @@
         <dependency>
             <groupId>fr.unice.polytech.isadevops.dronedelivery</groupId>
             <artifactId>projet-isa-devops-20-team-b-20-drone-park-component</artifactId>
-            <version>1.1-SNAPSHOT</version>
+            <version>1.2-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -96,33 +96,33 @@
                 </configuration>
             </plugin>
 
-<!--            UNCOMMENT TO GENERATE WSDL FROM <className>thewsImpl.java</className> TO <output>dir/thewsWS.wsdl</output> -->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.cxf</groupId>-->
-<!--                <artifactId>cxf-java2ws-plugin</artifactId>-->
-<!--                <version>${cxf.version}</version>-->
-<!--                <dependencies>-->
-<!--                    <dependency>-->
-<!--                        <groupId>org.apache.cxf</groupId>-->
-<!--                        <artifactId>cxf-rt-frontend-jaxws</artifactId>-->
-<!--                        <version>${cxf.version}</version>-->
-<!--                    </dependency>-->
-<!--                </dependencies>-->
-<!--                <configuration>-->
-<!--                    <className>fr.polytech.webservices.DeliveryScheduleServiceImpl</className>-->
-<!--                    <outputFile>${basedir}/../projet-isa-devops-20-team-b-20-web-service/src/main/resources/wsdl/DeliveryScheduleWS.wsdl</outputFile>-->
-<!--                    <genWsdl>true</genWsdl>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>process-classes</id>-->
-<!--                        <phase>process-classes</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>java2ws</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <!--            UNCOMMENT TO GENERATE WSDL FROM <className>thewsImpl.java</className> TO <output>dir/thewsWS.wsdl</output> -->
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.cxf</groupId>-->
+            <!--                <artifactId>cxf-java2ws-plugin</artifactId>-->
+            <!--                <version>${cxf.version}</version>-->
+            <!--                <dependencies>-->
+            <!--                    <dependency>-->
+            <!--                        <groupId>org.apache.cxf</groupId>-->
+            <!--                        <artifactId>cxf-rt-frontend-jaxws</artifactId>-->
+            <!--                        <version>${cxf.version}</version>-->
+            <!--                    </dependency>-->
+            <!--                </dependencies>-->
+            <!--                <configuration>-->
+            <!--                    <className>fr.polytech.webservices.DeliveryScheduleServiceImpl</className>-->
+            <!--                    <outputFile>${basedir}/../projet-isa-devops-20-team-b-20-web-service/src/main/resources/wsdl/DeliveryScheduleWS.wsdl</outputFile>-->
+            <!--                    <genWsdl>true</genWsdl>-->
+            <!--                </configuration>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>process-classes</id>-->
+            <!--                        <phase>process-classes</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>java2ws</goal>-->
+            <!--                        </goals>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
 
