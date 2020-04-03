@@ -28,7 +28,7 @@ public class DeliveryScheduleServiceImpl implements DeliveryScheduleService {
         }
         String[] time = stringDate.split(":");
         GregorianCalendar c = new GregorianCalendar();
-        c.set(GregorianCalendar.HOUR, Integer.parseInt(time[0]));
+        c.set(GregorianCalendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
         c.set(GregorianCalendar.MINUTE, Integer.parseInt(time[1]));
         deliveryScheduler.scheduleDelivery(c, delivery);
     }
