@@ -69,8 +69,8 @@ pipeline{
     }
     post{
         always {
-            archiveArtifacts artifacts: 'target/**/*', fingerprint: true
-            junit 'target/surefire-reports/*.xml'
+            // archiveArtifacts artifacts: 'target/**/*', fingerprint: true
+            // junit 'target/surefire-reports/*.xml'
             echo '======== pipeline archived ========'
         }
         success {
@@ -83,7 +83,6 @@ pipeline{
             message: 'Job: ' + env.JOB_NAME + ' with buildnumber ' + env.BUILD_NUMBER + ' was successful' + gate,
             baseUrl: env.SLACK_WEBHOOK)
             echo "======== pipeline executed successfully ========"
-            sh 'mvn versions:commit'
         }
         failure {
             slackSend(
@@ -95,7 +94,6 @@ pipeline{
             message: 'Job: ' + env.JOB_NAME + ' with buildnumber ' + env.BUILD_NUMBER + ' was failed',
             baseUrl: env.SLACK_WEBHOOK)
             echo "======== pipeline execution failed========"
-            sh 'mvn versions:revert'
         }
     }
 }
