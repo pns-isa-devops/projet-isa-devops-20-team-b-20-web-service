@@ -22,19 +22,19 @@ public class DeliveryServiceImpl implements DeliveryService {
     @EJB
     private DeliveryModifier deliveryModifier;
 
-    @Override
     /**
-     * Get the delivery corresponding to deliveryId from the deliveryModifier
-     * component and start the shipment with it
+     * Gets the delivery corresponding to deliveryId from the deliveryModifier
+     * component and start the shipment with it.
      */
+    @Override
     public void startDelivery(String deliveryId) throws Exception {
-        Delivery deliveryFromWharehouse = deliveryModifier.findDelivery(deliveryId);
+        Delivery deliveryFromWarehouse = deliveryModifier.findDelivery(deliveryId);
 
         // If the delivery doesn't have a drone associated there is a problem
-        if (deliveryFromWharehouse.getDrone() == null) {
+        if (deliveryFromWarehouse.getDrone() == null) {
             throw new Exception("There is no drone on this delivery");
         }
-        deliveryInitializer.initializeDelivery(deliveryFromWharehouse);
+        deliveryInitializer.initializeDelivery(deliveryFromWarehouse);
     }
 
     @Override

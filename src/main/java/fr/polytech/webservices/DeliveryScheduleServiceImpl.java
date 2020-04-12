@@ -18,8 +18,9 @@ public class DeliveryScheduleServiceImpl implements DeliveryScheduleService {
     private DeliveryScheduler deliveryScheduler;
 
     @EJB
-    private DeliveryModifier deliveryModifier;
+    private DeliveryModifier deliveryModifier; //TODO, this has nothing to do here
 
+    @Override
     public void scheduleDelivery(String deliveryId, String stringDate) throws Exception {
         Delivery delivery = deliveryModifier.findDelivery(deliveryId);
 
