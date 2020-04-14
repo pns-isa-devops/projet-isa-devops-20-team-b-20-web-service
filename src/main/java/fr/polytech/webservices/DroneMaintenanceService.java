@@ -21,5 +21,11 @@ public interface DroneMaintenanceService {
     @WebMethod
     boolean reviewDrone(@WebParam(name = "drone_id") String droneId) throws Exception;
 
+    /**
+     * Set the drone with the id drone_id available
+     */
+    @WebMethod
+    boolean setAvailableDrone(@WebParam(name = "drone_id") String droneId) throws Exception;
+
 
 }

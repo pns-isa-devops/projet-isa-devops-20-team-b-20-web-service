@@ -6,12 +6,24 @@
   <xs:element name="chargeDroneResponse" type="tns:chargeDroneResponse"/>
   <xs:element name="reviewDrone" type="tns:reviewDrone"/>
   <xs:element name="reviewDroneResponse" type="tns:reviewDroneResponse"/>
+  <xs:element name="setAvailableDrone" type="tns:setAvailableDrone"/>
+  <xs:element name="setAvailableDroneResponse" type="tns:setAvailableDroneResponse"/>
   <xs:complexType name="reviewDrone">
     <xs:sequence>
       <xs:element minOccurs="0" name="drone_id" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="reviewDroneResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="setAvailableDrone">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="drone_id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="setAvailableDroneResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean"/>
     </xs:sequence>
@@ -42,6 +54,14 @@
     <wsdl:part name="parameters" element="tns:chargeDroneResponse">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="setAvailableDroneResponse">
+    <wsdl:part name="parameters" element="tns:setAvailableDroneResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setAvailableDrone">
+    <wsdl:part name="parameters" element="tns:setAvailableDrone">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="reviewDroneResponse">
     <wsdl:part name="parameters" element="tns:reviewDroneResponse">
     </wsdl:part>
@@ -63,6 +83,14 @@
       <wsdl:fault name="Exception" message="tns:Exception">
     </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="setAvailableDrone">
+      <wsdl:input name="setAvailableDrone" message="tns:setAvailableDrone">
+    </wsdl:input>
+      <wsdl:output name="setAvailableDroneResponse" message="tns:setAvailableDroneResponse">
+    </wsdl:output>
+      <wsdl:fault name="Exception" message="tns:Exception">
+    </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="chargeDrone">
       <wsdl:input name="chargeDrone" message="tns:chargeDrone">
     </wsdl:input>
@@ -80,6 +108,18 @@
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="reviewDroneResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setAvailableDrone">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setAvailableDrone">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setAvailableDroneResponse">
         <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="Exception">
