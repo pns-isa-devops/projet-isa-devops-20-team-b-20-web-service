@@ -13,7 +13,13 @@ public interface DroneMaintenanceService {
      * Set the drone with the id drone_id in charge mode
      */
     @WebMethod
-    void chargeDrone(@WebParam(name = "drone_id") String droneId) throws Exception;
+    boolean chargeDrone(@WebParam(name = "drone_id") String droneId) throws Exception;
+
+    /**
+     * Set the drone with the id drone_id in review mode
+     */
+    @WebMethod
+    boolean reviewDrone(@WebParam(name = "drone_id") String droneId) throws Exception;
 
 
 }

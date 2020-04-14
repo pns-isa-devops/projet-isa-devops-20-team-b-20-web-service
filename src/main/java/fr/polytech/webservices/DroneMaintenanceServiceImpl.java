@@ -15,13 +15,28 @@ public class DroneMaintenanceServiceImpl implements DroneMaintenanceService{
     private DroneReviewer droneReviewer;
 
     @Override
-    public void chargeDrone(String droneId) throws Exception {
+    public boolean chargeDrone(String droneId) throws Exception {
 
         if(droneReviewer.setDroneInCharge(droneId)){
             System.out.println("Set drone "+droneId+ " in charge ! ");
+            return true;
         }
         else{
             System.out.println("Drone "+droneId+ " doesn't exist ! ");
+            return false;
+        }
+    }
+
+    @Override
+    public boolean reviewDrone(String droneId) throws Exception {
+
+        if(droneReviewer.putDroneInRevision(droneId)){
+            System.out.println("Set drone "+droneId+ " in review  ! ");
+            return true;
+        }
+        else{
+            System.out.println("Drone "+droneId+ " doesn't exist ! ");
+            return false;
         }
     }
 }
