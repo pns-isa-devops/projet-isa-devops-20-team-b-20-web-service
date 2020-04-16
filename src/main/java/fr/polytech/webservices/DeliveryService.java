@@ -20,4 +20,7 @@ public interface DeliveryService {
         @WebMethod
         Delivery getNextDelivery() throws Exception;
 
+        @WebMethod
+        void checkForNewParcels();
+
 }

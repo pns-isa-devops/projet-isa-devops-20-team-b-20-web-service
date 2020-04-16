@@ -42,4 +42,9 @@ public class DeliveryServiceImpl implements DeliveryService {
         return deliveryOrganizer.getNextDelivery();
     }
 
+    @Override
+    public void checkForNewParcels() {
+        deliveryModifier.checkForNewParcels();
+    }
+    
 }
