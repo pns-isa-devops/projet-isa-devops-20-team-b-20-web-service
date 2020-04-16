@@ -16,7 +16,7 @@
   </xs:complexType>
   <xs:complexType name="delivery">
     <xs:sequence>
-      <xs:element minOccurs="0" name="deliveryNumber" type="xs:string"/>
+      <xs:element minOccurs="0" name="deliveryId" type="xs:string"/>
       <xs:element minOccurs="0" name="drone" type="tns:drone"/>
       <xs:element minOccurs="0" name="parcel" type="tns:parcel"/>
       <xs:element minOccurs="0" name="status" type="tns:deliveryStatus"/>
@@ -24,7 +24,8 @@
   </xs:complexType>
   <xs:complexType name="drone">
     <xs:sequence>
-      <xs:element name="droneId" type="xs:int"/>
+      <xs:element minOccurs="0" name="currentDelivery" type="tns:delivery"/>
+      <xs:element minOccurs="0" name="droneId" type="xs:string"/>
       <xs:element minOccurs="0" name="droneStatus" type="tns:droneStatus"/>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="timeSlots" nillable="true" type="tns:timeSlot"/>
     </xs:sequence>
@@ -33,6 +34,8 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="date" type="xs:dateTime"/>
       <xs:element minOccurs="0" name="delivery" type="tns:delivery"/>
+      <xs:element minOccurs="0" name="drone" type="tns:drone"/>
+      <xs:element name="id" type="xs:int"/>
       <xs:element minOccurs="0" name="state" type="tns:timeState"/>
     </xs:sequence>
   </xs:complexType>
@@ -41,7 +44,8 @@
       <xs:element minOccurs="0" name="address" type="xs:string"/>
       <xs:element minOccurs="0" name="carrier" type="xs:string"/>
       <xs:element minOccurs="0" name="customerName" type="xs:string"/>
-      <xs:element minOccurs="0" name="parcelNumber" type="xs:string"/>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="parcelId" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="startDelivery">
@@ -93,12 +97,12 @@
     <wsdl:part name="parameters" element="tns:getNextDelivery">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="Exception">
-    <wsdl:part name="Exception" element="tns:Exception">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="startDelivery">
     <wsdl:part name="parameters" element="tns:startDelivery">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part name="Exception" element="tns:Exception">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="startDeliveryResponse">
@@ -111,8 +115,6 @@
     </wsdl:input>
       <wsdl:output name="getNextDeliveryResponse" message="tns:getNextDeliveryResponse">
     </wsdl:output>
-      <wsdl:fault name="Exception" message="tns:Exception">
-    </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="startDelivery">
       <wsdl:input name="startDelivery" message="tns:startDelivery">
@@ -133,9 +135,6 @@
       <wsdl:output name="getNextDeliveryResponse">
         <soap:body use="literal"/>
       </wsdl:output>
-      <wsdl:fault name="Exception">
-        <soap:fault name="Exception" use="literal"/>
-      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="startDelivery">
       <soap:operation soapAction="" style="document"/>

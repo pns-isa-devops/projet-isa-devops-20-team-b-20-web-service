@@ -16,7 +16,7 @@ public class DroneMaintenanceServiceImpl implements DroneMaintenanceService {
 
     @Override
     public void addDrone() {
-        droneReviewer.addDrone();
+        this.droneReviewer.addDrone();
     }
 
     @Override
