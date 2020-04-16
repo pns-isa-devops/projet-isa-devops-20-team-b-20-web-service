@@ -38,7 +38,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Delivery getNextDelivery() throws Exception {
+    public Delivery getNextDelivery() {
         return deliveryOrganizer.getNextDelivery();
     }
 

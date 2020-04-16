@@ -21,7 +21,7 @@ public class DeliveryScheduleServiceImpl implements DeliveryScheduleService {
     private DeliveryModifier deliveryModifier; //TODO, this has nothing to do here
 
     @Override
-    public void scheduleDelivery(String deliveryId, String stringDate) throws Exception {
+    public void scheduleDelivery(String deliveryId, String stringDate) throws Exception { //todo put more precise exception
         Delivery delivery = deliveryModifier.findDelivery(deliveryId);
 
         if (delivery == null) {

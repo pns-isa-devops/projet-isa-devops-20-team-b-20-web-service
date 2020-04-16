@@ -10,7 +10,7 @@ import javax.jws.WebService;
 public interface DeliveryService {
 
         @WebMethod
-        void startDelivery(@WebParam(name = "delivery_id") String deliveryId) throws Exception;
+        void startDelivery(@WebParam(name = "delivery_id") String deliveryId) throws Exception; // TODO never throw blank exception like that...
 
         /**
          * Shows the closest delivery to process, according to the planning
@@ -18,6 +18,6 @@ public interface DeliveryService {
          * @throws Exception
          */
         @WebMethod
-        Delivery getNextDelivery() throws Exception;
+        Delivery getNextDelivery();
 
 }
