@@ -1,5 +1,7 @@
 package fr.polytech.webservices;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
@@ -43,8 +45,8 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public void checkForNewParcels() {
-        deliveryModifier.checkForNewParcels();
+    public List<Delivery> checkForNewParcels() {
+        return deliveryModifier.checkForNewParcels();
     }
     
 }

@@ -2,6 +2,8 @@ package fr.polytech.webservices;
 
 import fr.polytech.entities.Delivery;
 
+import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -21,6 +23,6 @@ public interface DeliveryService {
         Delivery getNextDelivery();
 
         @WebMethod
-        void checkForNewParcels();
+        List<Delivery> checkForNewParcels();
 
 }
