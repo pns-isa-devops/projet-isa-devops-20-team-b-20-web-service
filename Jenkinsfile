@@ -89,7 +89,7 @@ pipeline{
             failOnError: true,
             color: 'danger',
             token: env.SLACK_TOKEN,
-            message: 'Job: ' + env.JOB_NAME + ' with buildnumber ' + env.BUILD_NUMBER + ' was failed',
+            message: 'Job: ' + env.JOB_NAME + ' with buildnumber ' + env.BUILD_NUMBER + ' was failed' + gate,
             baseUrl: env.SLACK_WEBHOOK)
             echo "======== pipeline execution failed========"
         }
