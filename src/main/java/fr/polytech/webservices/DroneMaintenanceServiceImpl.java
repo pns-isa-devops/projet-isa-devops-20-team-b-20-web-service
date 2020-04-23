@@ -3,6 +3,7 @@ package fr.polytech.webservices;
 
 import fr.polytech.dronepark.components.DroneReviewer;
 import fr.polytech.dronepark.exception.DroneNotFoundException;
+import fr.polytech.dronepark.exception.InvalidDroneIDException;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -16,7 +17,7 @@ public class DroneMaintenanceServiceImpl implements DroneMaintenanceService {
     private DroneReviewer droneReviewer;
 
     @Override
-    public void addDrone(String droneId) {
+    public void addDrone(String droneId) throws InvalidDroneIDException {
         this.droneReviewer.addDrone(droneId);
     }
 
