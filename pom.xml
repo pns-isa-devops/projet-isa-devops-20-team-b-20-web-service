@@ -114,8 +114,8 @@
                 </configuration>
             </plugin>
 
-                        <!-- UNCOMMENT TO GENERATE WSDL FROM <className>thewsImpl.java</className> TO <output>dir/thewsWS.wsdl</output>  -->
-                        <!-- <plugin>
+                        <!-- UNCOMMENT TO GENERATE WSDL FROM <className>theWebServiceImpl.java</className> TO <output>dir/theWebServiceWS.wsdl</output>  -->
+<!--                        <plugin>
                             <groupId>org.apache.cxf</groupId>
                             <artifactId>cxf-java2ws-plugin</artifactId>
                             <version>${cxf.version}</version>
@@ -127,8 +127,8 @@
                                 </dependency>
                             </dependencies>
                             <configuration>
-                                <className>fr.polytech.webservices.DeliveryServiceImpl</className>
-                                <outputFile>${basedir}/src/main/resources/wsdl/DeliveryWS.wsdl</outputFile>
+                                <className>fr.polytech.webservices.DroneMaintenanceServiceImpl</className>
+                                <outputFile>${basedir}/src/main/resources/wsdl/DroneMaintenanceWS.wsdl</outputFile>
                                 <genWsdl>true</genWsdl>
                             </configuration>
                             <executions>
@@ -140,7 +140,7 @@
                                     </goals>
                                 </execution>
                             </executions>
-                        </plugin> -->
+                        </plugin>-->
         </plugins>
     </build>
 

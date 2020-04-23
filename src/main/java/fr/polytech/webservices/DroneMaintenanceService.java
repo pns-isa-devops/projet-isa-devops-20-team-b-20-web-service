@@ -1,6 +1,7 @@
 package fr.polytech.webservices;
 
 import fr.polytech.dronepark.exception.DroneNotFoundException;
+import fr.polytech.dronepark.exception.InvalidDroneIDException;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -13,7 +14,7 @@ public interface DroneMaintenanceService {
      * Adds a drone to the database.
      */
     @WebMethod
-    void addDrone();
+    void addDrone(@WebParam(name = "drone_id") String droneId) throws InvalidDroneIDException;
 
     /**
      * Set the drone with the id drone_id in charge mode
