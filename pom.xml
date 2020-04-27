@@ -72,6 +72,12 @@
             <version>${versions.projet-isa-devops-20-team-b-20-entities}</version>
         </dependency>
 
+        <dependency>
+            <groupId>fr.unice.polytech.isadevops.dronedelivery</groupId>
+            <artifactId>projet-isa-devops-20-team-b-20-statistics-component</artifactId>
+            <version>${versions.projet-isa-devops-20-team-b-20-statistics-component}</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
@@ -115,7 +121,7 @@
             </plugin>
 
                         <!-- UNCOMMENT TO GENERATE WSDL FROM <className>theWebServiceImpl.java</className> TO <output>dir/theWebServiceWS.wsdl</output>  -->
-<!--                        <plugin>
+                        <plugin>
                             <groupId>org.apache.cxf</groupId>
                             <artifactId>cxf-java2ws-plugin</artifactId>
                             <version>${cxf.version}</version>
@@ -127,8 +133,8 @@
                                 </dependency>
                             </dependencies>
                             <configuration>
-                                <className>fr.polytech.webservices.DroneMaintenanceServiceImpl</className>
-                                <outputFile>${basedir}/src/main/resources/wsdl/DroneMaintenanceWS.wsdl</outputFile>
+                                <className>fr.polytech.webservices.AnalyticsServiceImpl</className>
+                                <outputFile>${basedir}/src/main/resources/wsdl/AnalyticsWS.wsdl</outputFile>
                                 <genWsdl>true</genWsdl>
                             </configuration>
                             <executions>
@@ -140,7 +146,7 @@
                                     </goals>
                                 </execution>
                             </executions>
-                        </plugin>-->
+                        </plugin>
         </plugins>
     </build>
 
