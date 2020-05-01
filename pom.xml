@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>projet-isa-devops-20-team-b-20-drone-delivery</artifactId>
         <groupId>fr.unice.polytech.isadevops.dronedelivery</groupId>
@@ -17,7 +16,7 @@
         </versions.projet-isa-devops-20-team-b-20-statistics-component>
         <versions.projet-isa-devops-20-team-b-20-invoice-component>1.1-SNAPSHOT
         </versions.projet-isa-devops-20-team-b-20-invoice-component>
-        <versions.projet-isa-devops-20-team-b-20-schedule-component>1.1-SNAPSHOT
+        <versions.projet-isa-devops-20-team-b-20-schedule-component>1.3-SNAPSHOT
         </versions.projet-isa-devops-20-team-b-20-schedule-component>
         <versions.projet-isa-devops-20-team-b-20-drone-park-component>1.3-SNAPSHOT
         </versions.projet-isa-devops-20-team-b-20-drone-park-component>

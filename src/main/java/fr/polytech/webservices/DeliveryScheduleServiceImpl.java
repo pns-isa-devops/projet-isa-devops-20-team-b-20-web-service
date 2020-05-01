@@ -8,6 +8,8 @@ import javax.jws.WebService;
 
 import fr.polytech.entities.Delivery;
 import fr.polytech.schedule.components.DeliveryScheduler;
+import fr.polytech.schedule.exception.DroneNotFoundException;
+import fr.polytech.schedule.exception.TimeslotUnvailableException;
 import fr.polytech.warehouse.components.DeliveryModifier;
 import fr.polytech.warehouse.exception.UnknownDeliveryException;
 
@@ -22,7 +24,8 @@ public class DeliveryScheduleServiceImpl implements DeliveryScheduleService {
     private DeliveryModifier deliveryModifier;
 
     @Override
-    public void scheduleDelivery(String deliveryId, String stringDate) throws UnknownDeliveryException {
+    public void scheduleDelivery(String deliveryId, String stringDate)
+            throws DroneNotFoundException, TimeslotUnvailableException, UnknownDeliveryException {
         Delivery delivery = deliveryModifier.findDelivery(deliveryId);
         String[] time = stringDate.split(":");
         GregorianCalendar c = new GregorianCalendar();

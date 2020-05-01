@@ -10,6 +10,7 @@ import fr.polytech.dronepark.exception.ExternalDroneApiException;
 import fr.polytech.entities.Delivery;
 import fr.polytech.entities.Drone;
 import fr.polytech.schedule.components.DeliveryOrganizer;
+import fr.polytech.schedule.exception.DroneNotFoundException;
 import fr.polytech.shipment.components.DeliveryInitializer;
 import fr.polytech.shipment.exception.NoDroneAttachOnDelivery;
 import fr.polytech.warehouse.components.DeliveryModifier;
@@ -52,7 +53,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Delivery getNextDelivery() {
+    public Delivery getNextDelivery() throws DroneNotFoundException {
         return deliveryOrganizer.getNextDelivery();
     }
 

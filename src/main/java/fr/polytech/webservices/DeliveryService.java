@@ -2,6 +2,7 @@ package fr.polytech.webservices;
 
 import fr.polytech.dronepark.exception.ExternalDroneApiException;
 import fr.polytech.entities.Delivery;
+import fr.polytech.schedule.exception.DroneNotFoundException;
 import fr.polytech.shipment.exception.NoDroneAttachOnDelivery;
 import fr.polytech.warehouse.exception.ExternalCarrierApiException;
 import fr.polytech.warehouse.exception.UnknownDeliveryException;
@@ -24,10 +25,11 @@ public interface DeliveryService {
          * Shows the closest delivery to process, according to the planning
          *
          * @return Delivery
+         * @throws DroneNotFoundException
          * @throws Exception
          */
         @WebMethod
-        Delivery getNextDelivery();
+        Delivery getNextDelivery() throws DroneNotFoundException;
 
         @WebMethod
         List<Delivery> checkForNewParcels() throws ExternalCarrierApiException, UnknownParcelException;
