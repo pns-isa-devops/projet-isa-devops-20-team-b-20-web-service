@@ -1,6 +1,11 @@
 package fr.polytech.webservices;
 
+import fr.polytech.dronepark.exception.ExternalDroneApiException;
 import fr.polytech.entities.Delivery;
+import fr.polytech.shipment.exception.NoDroneAttachOnDelivery;
+import fr.polytech.warehouse.exception.ExternalCarrierApiException;
+import fr.polytech.warehouse.exception.UnknownDeliveryException;
+import fr.polytech.warehouse.exception.UnknownParcelException;
 
 import java.util.List;
 
@@ -12,10 +17,12 @@ import javax.jws.WebService;
 public interface DeliveryService {
 
         @WebMethod
-        void startDelivery(@WebParam(name = "delivery_id") String deliveryId) throws Exception; // TODO never throw blank exception like that...
+        void startDelivery(@WebParam(name = "delivery_id") String deliveryId)
+                        throws NoDroneAttachOnDelivery, ExternalDroneApiException, UnknownDeliveryException;
 
         /**
          * Shows the closest delivery to process, according to the planning
+         *
          * @return Delivery
          * @throws Exception
          */
@@ -23,6 +30,6 @@ public interface DeliveryService {
         Delivery getNextDelivery();
 
         @WebMethod
-        List<Delivery> checkForNewParcels();
+        List<Delivery> checkForNewParcels() throws ExternalCarrierApiException, UnknownParcelException;
 
 }
