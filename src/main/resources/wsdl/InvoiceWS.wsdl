@@ -21,6 +21,7 @@
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="deliveries" nillable="true" type="tns:delivery"/>
       <xs:element minOccurs="0" name="invoiceId" type="xs:string"/>
+      <xs:element name="price" type="xs:float"/>
       <xs:element minOccurs="0" name="status" type="tns:invoiceStatus"/>
     </xs:sequence>
   </xs:complexType>
@@ -29,6 +30,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="deliveryId" type="xs:string"/>
       <xs:element minOccurs="0" name="drone" type="tns:drone"/>
+      <xs:element minOccurs="0" name="invoice" type="tns:invoice"/>
       <xs:element minOccurs="0" name="parcel" type="tns:parcel"/>
       <xs:element minOccurs="0" name="status" type="tns:deliveryStatus"/>
     </xs:sequence>
