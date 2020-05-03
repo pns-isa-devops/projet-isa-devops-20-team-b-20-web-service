@@ -2,61 +2,61 @@
   <wsdl:types>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone-maintenance" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone-maintenance" version="1.0">
 
-      <xs:element name="addDrone" type="tns:addDrone"/>
+  <xs:element name="addDrone" type="tns:addDrone"/>
 
-      <xs:element name="addDroneResponse" type="tns:addDroneResponse"/>
+  <xs:element name="addDroneResponse" type="tns:addDroneResponse"/>
 
-      <xs:element name="chargeDrone" type="tns:chargeDrone"/>
+  <xs:element name="chargeDrone" type="tns:chargeDrone"/>
 
-      <xs:element name="chargeDroneResponse" type="tns:chargeDroneResponse"/>
+  <xs:element name="chargeDroneResponse" type="tns:chargeDroneResponse"/>
 
-      <xs:element name="reviewDrone" type="tns:reviewDrone"/>
+  <xs:element name="reviewDrone" type="tns:reviewDrone"/>
 
-      <xs:element name="reviewDroneResponse" type="tns:reviewDroneResponse"/>
+  <xs:element name="reviewDroneResponse" type="tns:reviewDroneResponse"/>
 
-      <xs:element name="setAvailableDrone" type="tns:setAvailableDrone"/>
+  <xs:element name="setAvailableDrone" type="tns:setAvailableDrone"/>
 
-      <xs:element name="setAvailableDroneResponse" type="tns:setAvailableDroneResponse"/>
+  <xs:element name="setAvailableDroneResponse" type="tns:setAvailableDroneResponse"/>
 
-      <xs:complexType name="reviewDrone">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="drone_id" type="xs:string"/>
-        </xs:sequence>
-      </xs:complexType>
+  <xs:complexType name="reviewDrone">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="drone_id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
 
-      <xs:complexType name="reviewDroneResponse">
-        <xs:sequence/>
-      </xs:complexType>
+  <xs:complexType name="reviewDroneResponse">
+    <xs:sequence/>
+  </xs:complexType>
 
-      <xs:complexType name="setAvailableDrone">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="drone_id" type="xs:string"/>
-        </xs:sequence>
-      </xs:complexType>
+  <xs:complexType name="setAvailableDrone">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="drone_id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
 
-      <xs:complexType name="setAvailableDroneResponse">
-        <xs:sequence/>
-      </xs:complexType>
+  <xs:complexType name="setAvailableDroneResponse">
+    <xs:sequence/>
+  </xs:complexType>
 
-      <xs:complexType name="addDrone">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="drone_id" type="xs:string"/>
-        </xs:sequence>
-      </xs:complexType>
+  <xs:complexType name="addDrone">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="drone_id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
 
-      <xs:complexType name="addDroneResponse">
-        <xs:sequence/>
-      </xs:complexType>
+  <xs:complexType name="addDroneResponse">
+    <xs:sequence/>
+  </xs:complexType>
 
-      <xs:complexType name="chargeDrone">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="drone_id" type="xs:string"/>
-        </xs:sequence>
-      </xs:complexType>
+  <xs:complexType name="chargeDrone">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="drone_id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
 
-      <xs:complexType name="chargeDroneResponse">
-        <xs:sequence/>
-      </xs:complexType>
+  <xs:complexType name="chargeDroneResponse">
+    <xs:sequence/>
+  </xs:complexType>
 
 </xs:schema>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone">

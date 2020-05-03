@@ -119,9 +119,10 @@
       <xs:element minOccurs="0" name="message" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Exception" type="tns:Exception"/>
-  <xs:complexType name="Exception">
+  <xs:element name="UnknownDeliveryException" type="tns:UnknownDeliveryException"/>
+  <xs:complexType name="UnknownDeliveryException">
     <xs:sequence>
+      <xs:element minOccurs="0" name="parcelNumber" type="xs:string"/>
       <xs:element minOccurs="0" name="message" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
@@ -133,8 +134,38 @@
       <xsd:element minOccurs="0" name="message" type="xsd:string"/>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="NoDroneAttachOnDeliveryException" type="tns:NoDroneAttachOnDeliveryException"/>
+  <xsd:complexType name="NoDroneAttachOnDeliveryException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="NoTimeSlotAttachOnDeliveryException" type="tns:NoTimeSlotAttachOnDeliveryException"/>
+  <xsd:complexType name="NoTimeSlotAttachOnDeliveryException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ExternalDroneApiException" type="tns:ExternalDroneApiException"/>
+  <xsd:complexType name="ExternalDroneApiException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
 </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="NoDroneAttachOnDeliveryException">
+    <wsdl:part element="ns1:NoDroneAttachOnDeliveryException" name="NoDroneAttachOnDeliveryException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownParcelException">
+    <wsdl:part element="tns:UnknownParcelException" name="UnknownParcelException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkForNewParcelsResponse">
+    <wsdl:part element="tns:checkForNewParcelsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="checkForNewParcels">
     <wsdl:part element="tns:checkForNewParcels" name="parameters">
     </wsdl:part>
@@ -155,12 +186,12 @@
     <wsdl:part element="tns:startDelivery" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="Exception">
-    <wsdl:part element="tns:Exception" name="Exception">
+  <wsdl:message name="ExternalDroneApiException">
+    <wsdl:part element="ns1:ExternalDroneApiException" name="ExternalDroneApiException">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="UnknownParcelException">
-    <wsdl:part element="tns:UnknownParcelException" name="UnknownParcelException">
+  <wsdl:message name="UnknownDeliveryException">
+    <wsdl:part element="tns:UnknownDeliveryException" name="UnknownDeliveryException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="DroneNotFoundException">
@@ -171,8 +202,8 @@
     <wsdl:part element="tns:startDeliveryResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="checkForNewParcelsResponse">
-    <wsdl:part element="tns:checkForNewParcelsResponse" name="parameters">
+  <wsdl:message name="NoTimeSlotAttachOnDeliveryException">
+    <wsdl:part element="ns1:NoTimeSlotAttachOnDeliveryException" name="NoTimeSlotAttachOnDeliveryException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="DeliveryService">
@@ -199,19 +230,25 @@
     </wsdl:input>
       <wsdl:output message="tns:startDeliveryResponse" name="startDeliveryResponse">
     </wsdl:output>
-      <wsdl:fault message="tns:Exception" name="Exception">
+      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NoTimeSlotAttachOnDeliveryException" name="NoTimeSlotAttachOnDeliveryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:NoDroneAttachOnDeliveryException" name="NoDroneAttachOnDeliveryException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ExternalDroneApiException" name="ExternalDroneApiException">
     </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DeliveryServiceImplServiceSoapBinding" type="tns:DeliveryService">
-    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
     <wsdl:operation name="checkForNewParcels">
-      <soap:operation soapAction="" style="document" />
+      <soap:operation soapAction="" style="document"/>
       <wsdl:input name="checkForNewParcels">
-        <soap:body use="literal" />
+        <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="checkForNewParcelsResponse">
-        <soap:body use="literal" />
+        <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="UnknownParcelException">
         <soap:fault name="UnknownParcelException" use="literal"/>
@@ -221,33 +258,36 @@
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getNextDelivery">
-      <soap:operation soapAction="" style="document" />
+      <soap:operation soapAction="" style="document"/>
       <wsdl:input name="getNextDelivery">
-        <soap:body use="literal" />
+        <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="getNextDeliveryResponse">
-        <soap:body use="literal" />
+        <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="DroneNotFoundException">
         <soap:fault name="DroneNotFoundException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="startDelivery">
-      <soap:operation soapAction="" style="document" />
+      <soap:operation soapAction="" style="document"/>
       <wsdl:input name="startDelivery">
-        <soap:body use="literal" />
+        <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="startDeliveryResponse">
-        <soap:body use="literal" />
+        <soap:body use="literal"/>
       </wsdl:output>
       <wsdl:fault name="UnknownDeliveryException">
-        <soap:fault name="UnknownDeliveryException" use="literal" />
+        <soap:fault name="UnknownDeliveryException" use="literal"/>
       </wsdl:fault>
-      <wsdl:fault name="NoDroneAttachOnDelivery">
-        <soap:fault name="NoDroneAttachOnDelivery" use="literal" />
+      <wsdl:fault name="NoTimeSlotAttachOnDeliveryException">
+        <soap:fault name="NoTimeSlotAttachOnDeliveryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="NoDroneAttachOnDeliveryException">
+        <soap:fault name="NoDroneAttachOnDeliveryException" use="literal"/>
       </wsdl:fault>
       <wsdl:fault name="ExternalDroneApiException">
-        <soap:fault name="ExternalDroneApiException" use="literal" />
+        <soap:fault name="ExternalDroneApiException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>

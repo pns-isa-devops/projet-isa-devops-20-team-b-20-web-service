@@ -24,10 +24,10 @@ public class DeliveryScheduleServiceImpl implements DeliveryScheduleService {
     private DeliveryModifier deliveryModifier;
 
     @Override
-    public void scheduleDelivery(String deliveryId, String stringDate)
+    public void scheduleDelivery(String date, String deliveryId)
             throws DroneNotFoundException, TimeslotUnvailableException, UnknownDeliveryException {
         Delivery delivery = deliveryModifier.findDelivery(deliveryId);
-        String[] time = stringDate.split(":");
+        String[] time = date.split(":");
         GregorianCalendar c = new GregorianCalendar();
         c.set(GregorianCalendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
         c.set(GregorianCalendar.MINUTE, Integer.parseInt(time[1]));

@@ -12,7 +12,8 @@ import fr.polytech.entities.Drone;
 import fr.polytech.schedule.components.DeliveryOrganizer;
 import fr.polytech.schedule.exception.DroneNotFoundException;
 import fr.polytech.shipment.components.DeliveryInitializer;
-import fr.polytech.shipment.exception.NoDroneAttachOnDelivery;
+import fr.polytech.shipment.exception.NoDroneAttachOnDeliveryException;
+import fr.polytech.shipment.exception.NoTimeSlotAttachOnDeliveryException;
 import fr.polytech.warehouse.exception.UnknownDeliveryException;
 import fr.polytech.warehouse.components.DeliveryModifier;
 import fr.polytech.warehouse.exception.ExternalCarrierApiException;
@@ -35,20 +36,15 @@ public class DeliveryServiceImpl implements DeliveryService {
      * Gets the delivery corresponding to deliveryId from the deliveryModifier
      * component and start the shipment with it.
      *
-     * @throws NoDroneAttachOnDelivery
+     * @throws NoDroneAttachOnDeliveryException
      * @throws ExternalDroneApiException
      * @throws UnknownDeliveryException
+     * @throws NoTimeSlotAttachOnDeliveryException
      */
     @Override
-    public void startDelivery(String deliveryId)
-            throws NoDroneAttachOnDelivery, ExternalDroneApiException, UnknownDeliveryException {
+    public void startDelivery(String deliveryId) throws NoDroneAttachOnDeliveryException, ExternalDroneApiException,
+            UnknownDeliveryException, NoTimeSlotAttachOnDeliveryException {
         Delivery deliveryFromWarehouse = deliveryModifier.findDelivery(deliveryId);
-
-        // If the delivery doesn't have a drone associated there is a problem
-        Drone drone = deliveryFromWarehouse.getDrone();
-        if (drone == null) {
-            throw new NoDroneAttachOnDelivery(deliveryId);
-        }
         deliveryInitializer.initializeDelivery(deliveryFromWarehouse);
     }
 
