@@ -18,7 +18,7 @@ public class StatDelivery implements Serializable {
 
     @AroundInvoke
     public Object intercept(InvocationContext ctx) throws Exception {
-        Delivery delivery = (Delivery) ctx.getParameters()[1];
+        Delivery delivery = (Delivery) ctx.getParameters()[0];
         statisticsCreator.addOccupancy(delivery.getDrone().getDroneId(),new GregorianCalendar(),0.25);
         return ctx.proceed();
     }

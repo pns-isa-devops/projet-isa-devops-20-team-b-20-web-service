@@ -17,8 +17,7 @@ public class StatMaintenance implements Serializable {
 
     @AroundInvoke
     public Object intercept(InvocationContext ctx) throws Exception {
-        String droneId = (String) ctx.getParameters()[1];
-        String date = (String) ctx.getParameters()[2];
+        String droneId = (String) ctx.getParameters()[0];
         statisticsCreator.addOccupancy(droneId,new GregorianCalendar(),3.0);
         return ctx.proceed();
     }
