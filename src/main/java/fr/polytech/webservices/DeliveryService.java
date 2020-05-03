@@ -1,9 +1,12 @@
 package fr.polytech.webservices;
 
 import fr.polytech.entities.Delivery;
+import fr.polytech.webservices.interceptors.StatDelivery;
+import fr.polytech.webservices.interceptors.StatMaintenance;
 
 import java.util.List;
 
+import javax.interceptor.Interceptors;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -12,6 +15,7 @@ import javax.jws.WebService;
 public interface DeliveryService {
 
         @WebMethod
+        @Interceptors({StatDelivery.class})
         void startDelivery(@WebParam(name = "delivery_id") String deliveryId) throws Exception; // TODO never throw blank exception like that...
 
         /**
@@ -23,6 +27,6 @@ public interface DeliveryService {
         Delivery getNextDelivery();
 
         @WebMethod
-        List<Delivery> checkForNewParcels();
+        List<Delivery> checkForNewParcels() throws Exception ;
 
 }

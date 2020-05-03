@@ -45,7 +45,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public List<Delivery> checkForNewParcels() {
+    public List<Delivery> checkForNewParcels() throws Exception  {
         return deliveryModifier.checkForNewParcels();
     }
     

@@ -2,7 +2,10 @@ package fr.polytech.webservices;
 
 import fr.polytech.dronepark.exception.DroneNotFoundException;
 import fr.polytech.dronepark.exception.InvalidDroneIDException;
+import fr.polytech.webservices.interceptors.StatCharge;
+import fr.polytech.webservices.interceptors.StatMaintenance;
 
+import javax.interceptor.Interceptors;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -20,12 +23,14 @@ public interface DroneMaintenanceService {
      * Set the drone with the id drone_id in charge mode
      */
     @WebMethod
+    @Interceptors({StatCharge.class})
     void chargeDrone(@WebParam(name = "drone_id") String droneId) throws DroneNotFoundException;
 
     /**
      * Set the drone with the id drone_id in review mode
      */
     @WebMethod
+    @Interceptors({StatMaintenance.class})
     void reviewDrone(@WebParam(name = "drone_id") String droneId) throws DroneNotFoundException;
 
     /**
