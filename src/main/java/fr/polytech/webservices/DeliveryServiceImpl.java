@@ -15,7 +15,6 @@ import fr.polytech.shipment.components.DeliveryInitializer;
 import fr.polytech.shipment.exception.NoDroneAttachOnDelivery;
 import fr.polytech.warehouse.components.DeliveryModifier;
 import fr.polytech.warehouse.exception.ExternalCarrierApiException;
-import fr.polytech.warehouse.exception.UnknownDeliveryException;
 import fr.polytech.warehouse.exception.UnknownParcelException;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery")

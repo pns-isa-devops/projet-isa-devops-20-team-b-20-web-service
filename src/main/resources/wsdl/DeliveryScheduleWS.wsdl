@@ -1,43 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" name="DeliveryScheduleServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule">
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="DeliveryScheduleServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule">
   <wsdl:types>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule">
-      <xs:element name="scheduleDelivery" type="tns:scheduleDelivery" />
-      <xs:element name="scheduleDeliveryResponse" type="tns:scheduleDeliveryResponse" />
-      <xs:complexType name="scheduleDelivery">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="date" type="xs:string" />
-          <xs:element minOccurs="0" name="delivery_id" type="xs:string" />
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="scheduleDeliveryResponse">
-        <xs:sequence />
-      </xs:complexType>
-      <xs:element name="DroneNotFoundException" type="tns:DroneNotFoundException" />
-      <xs:complexType name="DroneNotFoundException">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="message" type="xs:string" />
-        </xs:sequence>
-      </xs:complexType>
-      <xs:element name="TimeslotUnvailableException" type="tns:TimeslotUnvailableException" />
-      <xs:complexType name="TimeslotUnvailableException">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="message" type="xs:string" />
-        </xs:sequence>
-      </xs:complexType>
-    </xs:schema>
-    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery">
-      <xsd:element name="UnknownDeliveryException" type="tns:UnknownDeliveryException" />
-      <xsd:complexType name="UnknownDeliveryException">
-        <xsd:sequence>
-          <xsd:element minOccurs="0" name="parcelNumber" type="xsd:string" />
-          <xsd:element minOccurs="0" name="message" type="xsd:string" />
-        </xsd:sequence>
-      </xsd:complexType>
-    </xsd:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule">
+  <xs:element name="scheduleDelivery" type="tns:scheduleDelivery"/>
+  <xs:element name="scheduleDeliveryResponse" type="tns:scheduleDeliveryResponse"/>
+  <xs:complexType name="scheduleDelivery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="date" type="xs:string"/>
+      <xs:element minOccurs="0" name="delivery_id" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="scheduleDeliveryResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="Exception" type="tns:Exception"/>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
   </wsdl:types>
+  <wsdl:message name="Exception">
+    <wsdl:part element="tns:Exception" name="Exception">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="scheduleDelivery">
-    <wsdl:part element="tns:scheduleDelivery" name="parameters"></wsdl:part>
+    <wsdl:part element="tns:scheduleDelivery" name="parameters">
+    </wsdl:part>
   </wsdl:message>
   <wsdl:message name="DroneNotFoundException">
     <wsdl:part element="tns:DroneNotFoundException" name="DroneNotFoundException"></wsdl:part>
@@ -49,15 +38,17 @@
     <wsdl:part element="ns1:UnknownDeliveryException" name="UnknownDeliveryException"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="scheduleDeliveryResponse">
-    <wsdl:part element="tns:scheduleDeliveryResponse" name="parameters"></wsdl:part>
+    <wsdl:part element="tns:scheduleDeliveryResponse" name="parameters">
+    </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="DeliveryScheduleService">
     <wsdl:operation name="scheduleDelivery">
-      <wsdl:input message="tns:scheduleDelivery" name="scheduleDelivery"></wsdl:input>
-      <wsdl:output message="tns:scheduleDeliveryResponse" name="scheduleDeliveryResponse"></wsdl:output>
-      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException"></wsdl:fault>
-      <wsdl:fault message="tns:DroneNotFoundException" name="DroneNotFoundException"></wsdl:fault>
-      <wsdl:fault message="tns:TimeslotUnvailableException" name="TimeslotUnvailableException"></wsdl:fault>
+      <wsdl:input message="tns:scheduleDelivery" name="scheduleDelivery">
+    </wsdl:input>
+      <wsdl:output message="tns:scheduleDeliveryResponse" name="scheduleDeliveryResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DeliveryScheduleServiceImplServiceSoapBinding" type="tns:DeliveryScheduleService">
@@ -83,7 +74,7 @@
   </wsdl:binding>
   <wsdl:service name="DeliveryScheduleServiceImplService">
     <wsdl:port binding="tns:DeliveryScheduleServiceImplServiceSoapBinding" name="DeliveryScheduleServiceImplPort">
-      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/DeliveryScheduleWS" />
+      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/DeliveryScheduleWS"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
