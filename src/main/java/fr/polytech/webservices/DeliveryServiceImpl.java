@@ -8,8 +8,11 @@ import javax.jws.WebService;
 
 import fr.polytech.entities.Delivery;
 import fr.polytech.schedule.components.DeliveryOrganizer;
+import fr.polytech.schedule.exception.DroneNotFoundException;
 import fr.polytech.shipment.components.DeliveryInitializer;
 import fr.polytech.warehouse.components.DeliveryModifier;
+import fr.polytech.warehouse.exception.ExternalCarrierApiException;
+import fr.polytech.warehouse.exception.UnknownParcelException;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery")
 @Stateless(name = "DeliveryWS")
@@ -40,13 +43,13 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Delivery getNextDelivery() {
+    public Delivery getNextDelivery() throws DroneNotFoundException {
         return deliveryOrganizer.getNextDelivery();
     }
 
     @Override
-    public List<Delivery> checkForNewParcels() {
+    public List<Delivery> checkForNewParcels() throws ExternalCarrierApiException, UnknownParcelException {
         return deliveryModifier.checkForNewParcels();
     }
-    
+
 }

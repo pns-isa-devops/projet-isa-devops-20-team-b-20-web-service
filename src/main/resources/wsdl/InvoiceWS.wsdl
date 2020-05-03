@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="InvoiceServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="InvoiceServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice">
   <wsdl:types>
-<xs:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice" version="1.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice" version="1.0">
 
   <xs:element name="getInvoices" type="tns:getInvoices"/>
 
@@ -104,18 +103,18 @@
 </xs:schema>
   </wsdl:types>
   <wsdl:message name="getInvoicesResponse">
-    <wsdl:part name="parameters" element="tns:getInvoicesResponse">
+    <wsdl:part element="tns:getInvoicesResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getInvoices">
-    <wsdl:part name="parameters" element="tns:getInvoices">
+    <wsdl:part element="tns:getInvoices" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="InvoiceService">
     <wsdl:operation name="getInvoices">
-      <wsdl:input name="getInvoices" message="tns:getInvoices">
+      <wsdl:input message="tns:getInvoices" name="getInvoices">
     </wsdl:input>
-      <wsdl:output name="getInvoicesResponse" message="tns:getInvoicesResponse">
+      <wsdl:output message="tns:getInvoicesResponse" name="getInvoicesResponse">
     </wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
@@ -132,8 +131,8 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="InvoiceServiceImplService">
-    <wsdl:port name="InvoiceServiceImplPort" binding="tns:InvoiceServiceImplServiceSoapBinding">
-      <soap:address location="http://localhost:9090/InvoiceServiceImplPort"/>
+    <wsdl:port binding="tns:InvoiceServiceImplServiceSoapBinding" name="InvoiceServiceImplPort">
+      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/InvoiceWS"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
