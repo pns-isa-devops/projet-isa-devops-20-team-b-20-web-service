@@ -6,10 +6,18 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 
+import fr.polytech.dronepark.exception.ExternalDroneApiException;
 import fr.polytech.entities.Delivery;
+import fr.polytech.entities.Drone;
 import fr.polytech.schedule.components.DeliveryOrganizer;
+import fr.polytech.schedule.exception.DroneNotFoundException;
 import fr.polytech.shipment.components.DeliveryInitializer;
+import fr.polytech.shipment.exception.NoDroneAttachOnDeliveryException;
+import fr.polytech.shipment.exception.NoTimeSlotAttachOnDeliveryException;
+import fr.polytech.warehouse.exception.UnknownDeliveryException;
 import fr.polytech.warehouse.components.DeliveryModifier;
+import fr.polytech.warehouse.exception.ExternalCarrierApiException;
+import fr.polytech.warehouse.exception.UnknownParcelException;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery")
 @Stateless(name = "DeliveryWS")
@@ -27,26 +35,27 @@ public class DeliveryServiceImpl implements DeliveryService {
     /**
      * Gets the delivery corresponding to deliveryId from the deliveryModifier
      * component and start the shipment with it.
+     *
+     * @throws NoDroneAttachOnDeliveryException
+     * @throws ExternalDroneApiException
+     * @throws UnknownDeliveryException
+     * @throws NoTimeSlotAttachOnDeliveryException
      */
     @Override
-    public void startDelivery(String deliveryId) throws Exception {
+    public void startDelivery(String deliveryId) throws NoDroneAttachOnDeliveryException, ExternalDroneApiException,
+            UnknownDeliveryException, NoTimeSlotAttachOnDeliveryException {
         Delivery deliveryFromWarehouse = deliveryModifier.findDelivery(deliveryId);
-
-        // If the delivery doesn't have a drone associated there is a problem
-        if (deliveryFromWarehouse.getDrone() == null) {
-            throw new Exception("There is no drone on this delivery");
-        }
         deliveryInitializer.initializeDelivery(deliveryFromWarehouse);
     }
 
     @Override
-    public Delivery getNextDelivery() {
+    public Delivery getNextDelivery() throws DroneNotFoundException {
         return deliveryOrganizer.getNextDelivery();
     }
 
     @Override
-    public List<Delivery> checkForNewParcels() {
+    public List<Delivery> checkForNewParcels() throws ExternalCarrierApiException, UnknownParcelException {
         return deliveryModifier.checkForNewParcels();
     }
-    
+
 }

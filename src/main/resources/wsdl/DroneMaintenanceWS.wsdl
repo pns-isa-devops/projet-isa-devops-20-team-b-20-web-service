@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="DroneMaintenanceServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone-maintenance" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone-maintenance" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone-maintenance" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" name="DroneMaintenanceServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone-maintenance">
   <wsdl:types>
-<xs:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone-maintenance" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone-maintenance" version="1.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone-maintenance" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone-maintenance" version="1.0">
 
   <xs:element name="addDrone" type="tns:addDrone"/>
 
@@ -60,7 +59,7 @@
   </xs:complexType>
 
 </xs:schema>
-<xsd:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone">
   <xsd:element name="DroneNotFoundException" type="tns:DroneNotFoundException"/>
   <xsd:complexType name="DroneNotFoundException">
     <xsd:sequence>
@@ -76,76 +75,76 @@
 </xsd:schema>
   </wsdl:types>
   <wsdl:message name="reviewDrone">
-    <wsdl:part name="parameters" element="tns:reviewDrone">
+    <wsdl:part element="tns:reviewDrone" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="chargeDroneResponse">
-    <wsdl:part name="parameters" element="tns:chargeDroneResponse">
+    <wsdl:part element="tns:chargeDroneResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="DroneNotFoundException">
-    <wsdl:part name="DroneNotFoundException" element="ns1:DroneNotFoundException">
+    <wsdl:part element="ns1:DroneNotFoundException" name="DroneNotFoundException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="setAvailableDroneResponse">
-    <wsdl:part name="parameters" element="tns:setAvailableDroneResponse">
+    <wsdl:part element="tns:setAvailableDroneResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="setAvailableDrone">
-    <wsdl:part name="parameters" element="tns:setAvailableDrone">
+    <wsdl:part element="tns:setAvailableDrone" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="addDroneResponse">
-    <wsdl:part name="parameters" element="tns:addDroneResponse">
+    <wsdl:part element="tns:addDroneResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="reviewDroneResponse">
-    <wsdl:part name="parameters" element="tns:reviewDroneResponse">
+    <wsdl:part element="tns:reviewDroneResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="addDrone">
-    <wsdl:part name="parameters" element="tns:addDrone">
+    <wsdl:part element="tns:addDrone" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="chargeDrone">
-    <wsdl:part name="parameters" element="tns:chargeDrone">
+    <wsdl:part element="tns:chargeDrone" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="InvalidDroneIDException">
-    <wsdl:part name="InvalidDroneIDException" element="ns1:InvalidDroneIDException">
+    <wsdl:part element="ns1:InvalidDroneIDException" name="InvalidDroneIDException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="DroneMaintenanceService">
     <wsdl:operation name="reviewDrone">
-      <wsdl:input name="reviewDrone" message="tns:reviewDrone">
+      <wsdl:input message="tns:reviewDrone" name="reviewDrone">
     </wsdl:input>
-      <wsdl:output name="reviewDroneResponse" message="tns:reviewDroneResponse">
+      <wsdl:output message="tns:reviewDroneResponse" name="reviewDroneResponse">
     </wsdl:output>
-      <wsdl:fault name="DroneNotFoundException" message="tns:DroneNotFoundException">
+      <wsdl:fault message="tns:DroneNotFoundException" name="DroneNotFoundException">
     </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="setAvailableDrone">
-      <wsdl:input name="setAvailableDrone" message="tns:setAvailableDrone">
+      <wsdl:input message="tns:setAvailableDrone" name="setAvailableDrone">
     </wsdl:input>
-      <wsdl:output name="setAvailableDroneResponse" message="tns:setAvailableDroneResponse">
+      <wsdl:output message="tns:setAvailableDroneResponse" name="setAvailableDroneResponse">
     </wsdl:output>
-      <wsdl:fault name="DroneNotFoundException" message="tns:DroneNotFoundException">
+      <wsdl:fault message="tns:DroneNotFoundException" name="DroneNotFoundException">
     </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="addDrone">
-      <wsdl:input name="addDrone" message="tns:addDrone">
+      <wsdl:input message="tns:addDrone" name="addDrone">
     </wsdl:input>
-      <wsdl:output name="addDroneResponse" message="tns:addDroneResponse">
+      <wsdl:output message="tns:addDroneResponse" name="addDroneResponse">
     </wsdl:output>
-      <wsdl:fault name="InvalidDroneIDException" message="tns:InvalidDroneIDException">
+      <wsdl:fault message="tns:InvalidDroneIDException" name="InvalidDroneIDException">
     </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="chargeDrone">
-      <wsdl:input name="chargeDrone" message="tns:chargeDrone">
+      <wsdl:input message="tns:chargeDrone" name="chargeDrone">
     </wsdl:input>
-      <wsdl:output name="chargeDroneResponse" message="tns:chargeDroneResponse">
+      <wsdl:output message="tns:chargeDroneResponse" name="chargeDroneResponse">
     </wsdl:output>
-      <wsdl:fault name="DroneNotFoundException" message="tns:DroneNotFoundException">
+      <wsdl:fault message="tns:DroneNotFoundException" name="DroneNotFoundException">
     </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
@@ -201,8 +200,8 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="DroneMaintenanceServiceImplService">
-    <wsdl:port name="DroneMaintenanceServiceImplPort" binding="tns:DroneMaintenanceServiceImplServiceSoapBinding">
-      <soap:address location="http://localhost:9090/DroneMaintenanceServiceImplPort"/>
+    <wsdl:port binding="tns:DroneMaintenanceServiceImplServiceSoapBinding" name="DroneMaintenanceServiceImplPort">
+      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/DroneMaintenanceWS"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
