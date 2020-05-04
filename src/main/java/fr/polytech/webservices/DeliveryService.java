@@ -8,9 +8,12 @@ import fr.polytech.shipment.exception.NoTimeSlotAttachOnDeliveryException;
 import fr.polytech.warehouse.exception.ExternalCarrierApiException;
 import fr.polytech.warehouse.exception.UnknownDeliveryException;
 import fr.polytech.warehouse.exception.UnknownParcelException;
+import fr.polytech.webservices.interceptors.StatDelivery;
+import fr.polytech.webservices.interceptors.StatMaintenance;
 
 import java.util.List;
 
+import javax.interceptor.Interceptors;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -19,6 +22,7 @@ import javax.jws.WebService;
 public interface DeliveryService {
 
         @WebMethod
+        @Interceptors({StatDelivery.class})
         void startDelivery(@WebParam(name = "delivery_id") String deliveryId) throws NoDroneAttachOnDeliveryException,
                         ExternalDroneApiException, UnknownDeliveryException, NoTimeSlotAttachOnDeliveryException;
 
