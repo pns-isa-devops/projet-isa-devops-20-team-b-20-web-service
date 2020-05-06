@@ -17,5 +17,7 @@ echo "download DeliveryScheduleWS"
 curl http://localhost:8080/drone-delivery-backend/webservices/DeliveryScheduleWS?wsdl > DeliveryScheduleWS.wsdl
 echo "download InvoiceWS"
 curl http://localhost:8080/drone-delivery-backend/webservices/InvoiceWS?wsdl > InvoiceWS.wsdl
+echo "download AnalyticsWS"
+curl http://localhost:8080/drone-delivery-backend/webservices/AnalyticsWS?wsdl > AnalyticsWS.wsdl
 echo ""
 echo "Done"
