@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 
+import fr.polytech.dronepark.exception.DroneNotAvailableException;
 import fr.polytech.dronepark.exception.ExternalDroneApiException;
 import fr.polytech.entities.Delivery;
 import fr.polytech.entities.Drone;
@@ -40,10 +41,11 @@ public class DeliveryServiceImpl implements DeliveryService {
      * @throws ExternalDroneApiException
      * @throws UnknownDeliveryException
      * @throws NoTimeSlotAttachOnDeliveryException
+     * @throws DroneNotAvailableException
      */
     @Override
     public void startDelivery(String deliveryId) throws NoDroneAttachOnDeliveryException, ExternalDroneApiException,
-            UnknownDeliveryException, NoTimeSlotAttachOnDeliveryException {
+            UnknownDeliveryException, NoTimeSlotAttachOnDeliveryException, DroneNotAvailableException {
         Delivery deliveryFromWarehouse = deliveryModifier.findDelivery(deliveryId);
         deliveryInitializer.initializeDelivery(deliveryFromWarehouse);
     }

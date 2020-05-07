@@ -13,8 +13,7 @@ public class AnalyticsServiceImpl implements AnalyticsService {
     private StatisticsCollector statisticsCollector;
 
     @Override
-    public double getOccupancyRate(String droneId) throws Exception {
+    public double getOccupancyRate(String droneId) {
         return statisticsCollector.getOccupancyRate(droneId);
-
     }
 }

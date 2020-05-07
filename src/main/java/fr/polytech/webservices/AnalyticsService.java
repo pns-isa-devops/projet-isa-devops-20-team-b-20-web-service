@@ -9,9 +9,10 @@ public interface AnalyticsService {
 
     /**
      * Returns the occupancy rate of the drone with droneId
+     * 
      * @param droneId
      * @throws Exception
      */
     @WebMethod
-    double getOccupancyRate(@WebParam(name = "drone_id") String droneId) throws Exception;
+    double getOccupancyRate(@WebParam(name = "drone_id") String droneId);
 }
