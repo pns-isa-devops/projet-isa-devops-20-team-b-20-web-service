@@ -98,6 +98,7 @@
       <xs:enumeration value="CHARGING"/>
       <xs:enumeration value="REVIEW"/>
       <xs:enumeration value="UNAVAILABLE"/>
+      <xs:enumeration value="AVAILABLE"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="invoiceStatus">

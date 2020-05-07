@@ -12,6 +12,10 @@ import fr.polytech.schedule.exception.DroneNotFoundException;
 import fr.polytech.schedule.exception.TimeslotUnvailableException;
 import fr.polytech.warehouse.components.DeliveryModifier;
 import fr.polytech.warehouse.exception.UnknownDeliveryException;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import fr.polytech.entities.TimeState;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule")
 @Stateless(name = "DeliveryScheduleWS")
@@ -32,5 +36,13 @@ public class DeliveryScheduleServiceImpl implements DeliveryScheduleService {
         c.set(GregorianCalendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
         c.set(GregorianCalendar.MINUTE, Integer.parseInt(time[1]));
         deliveryScheduler.scheduleDelivery(c, delivery);
+    }
+
+    @Override
+    public List<TimeState> getCurrentPlanning(String droneID) throws DroneNotFoundException
+    {
+        List<TimeState> states = deliveryScheduler.getCurrentPlanning(droneID);
+        System.out.println(states);
+        return states;
     }
 }
