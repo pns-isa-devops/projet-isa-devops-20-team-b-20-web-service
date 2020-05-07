@@ -143,6 +143,12 @@
       <xsd:element minOccurs="0" name="message" type="xsd:string"/>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="DroneNotAvailableException" type="tns:DroneNotAvailableException"/>
+  <xsd:complexType name="DroneNotAvailableException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
   <xsd:element name="NoDroneAttachOnDeliveryException" type="tns:NoDroneAttachOnDeliveryException"/>
   <xsd:complexType name="NoDroneAttachOnDeliveryException">
     <xsd:sequence>
@@ -165,6 +171,10 @@
   </wsdl:types>
   <wsdl:message name="NoDroneAttachOnDeliveryException">
     <wsdl:part element="ns1:NoDroneAttachOnDeliveryException" name="NoDroneAttachOnDeliveryException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DroneNotAvailableException">
+    <wsdl:part element="ns1:DroneNotAvailableException" name="DroneNotAvailableException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="UnknownParcelException">
@@ -241,6 +251,8 @@
     </wsdl:output>
       <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
     </wsdl:fault>
+      <wsdl:fault message="tns:DroneNotAvailableException" name="DroneNotAvailableException">
+    </wsdl:fault>
       <wsdl:fault message="tns:NoTimeSlotAttachOnDeliveryException" name="NoTimeSlotAttachOnDeliveryException">
     </wsdl:fault>
       <wsdl:fault message="tns:NoDroneAttachOnDeliveryException" name="NoDroneAttachOnDeliveryException">
@@ -288,6 +300,9 @@
       </wsdl:output>
       <wsdl:fault name="UnknownDeliveryException">
         <soap:fault name="UnknownDeliveryException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DroneNotAvailableException">
+        <soap:fault name="DroneNotAvailableException" use="literal"/>
       </wsdl:fault>
       <wsdl:fault name="NoTimeSlotAttachOnDeliveryException">
         <soap:fault name="NoTimeSlotAttachOnDeliveryException" use="literal"/>
