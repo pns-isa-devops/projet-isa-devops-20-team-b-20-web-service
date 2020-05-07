@@ -1,21 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="InvoiceServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice">
   <wsdl:types>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice" version="1.0">
-
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice">
+  <xs:element name="confirmInvoicePayment" type="tns:confirmInvoicePayment"/>
+  <xs:element name="confirmInvoicePaymentResponse" type="tns:confirmInvoicePaymentResponse"/>
   <xs:element name="getInvoices" type="tns:getInvoices"/>
-
   <xs:element name="getInvoicesResponse" type="tns:getInvoicesResponse"/>
-
   <xs:complexType name="getInvoices">
     <xs:sequence/>
   </xs:complexType>
-
   <xs:complexType name="getInvoicesResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:invoice"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="invoice">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="deliveries" nillable="true" type="tns:delivery"/>
@@ -24,7 +21,6 @@
       <xs:element minOccurs="0" name="status" type="tns:invoiceStatus"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="delivery">
     <xs:sequence>
       <xs:element minOccurs="0" name="deliveryId" type="xs:string"/>
@@ -34,7 +30,6 @@
       <xs:element minOccurs="0" name="status" type="tns:deliveryStatus"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="drone">
     <xs:sequence>
       <xs:element minOccurs="0" name="currentDelivery" type="tns:delivery"/>
@@ -45,7 +40,6 @@
       <xs:element maxOccurs="unbounded" minOccurs="0" name="timeSlots" nillable="true" type="tns:timeSlot"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="droneInformation">
     <xs:sequence>
       <xs:element minOccurs="0" name="date" type="xs:dateTime"/>
@@ -54,7 +48,6 @@
       <xs:element name="occupationRate" type="xs:double"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="timeSlot">
     <xs:sequence>
       <xs:element minOccurs="0" name="date" type="xs:dateTime"/>
@@ -64,7 +57,6 @@
       <xs:element minOccurs="0" name="state" type="tns:timeState"/>
     </xs:sequence>
   </xs:complexType>
-
   <xs:complexType name="parcel">
     <xs:sequence>
       <xs:element minOccurs="0" name="address" type="xs:string"/>
@@ -74,7 +66,16 @@
       <xs:element minOccurs="0" name="parcelId" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-
+  <xs:complexType name="confirmInvoicePayment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="confirmInvoicePaymentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:invoice"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:simpleType name="droneStatus">
     <xs:restriction base="xs:string">
       <xs:enumeration value="ON_CHARGE"/>
@@ -83,7 +84,6 @@
       <xs:enumeration value="AVAILABLE"/>
     </xs:restriction>
   </xs:simpleType>
-
   <xs:simpleType name="timeState">
     <xs:restriction base="xs:string">
       <xs:enumeration value="DELIVERY"/>
@@ -93,7 +93,6 @@
       <xs:enumeration value="AVAILABLE"/>
     </xs:restriction>
   </xs:simpleType>
-
   <xs:simpleType name="deliveryStatus">
     <xs:restriction base="xs:string">
       <xs:enumeration value="FAILED"/>
@@ -102,22 +101,38 @@
       <xs:enumeration value="DELIVERED"/>
     </xs:restriction>
   </xs:simpleType>
-
   <xs:simpleType name="invoiceStatus">
     <xs:restriction base="xs:string">
       <xs:enumeration value="NOT_PAID"/>
       <xs:enumeration value="PAID"/>
     </xs:restriction>
   </xs:simpleType>
-
+  <xs:element name="InvoiceNotFoundException" type="tns:InvoiceNotFoundException"/>
+  <xs:complexType name="InvoiceNotFoundException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>
   </wsdl:types>
   <wsdl:message name="getInvoicesResponse">
     <wsdl:part element="tns:getInvoicesResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="confirmInvoicePaymentResponse">
+    <wsdl:part element="tns:confirmInvoicePaymentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getInvoices">
     <wsdl:part element="tns:getInvoices" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="confirmInvoicePayment">
+    <wsdl:part element="tns:confirmInvoicePayment" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvoiceNotFoundException">
+    <wsdl:part element="tns:InvoiceNotFoundException" name="InvoiceNotFoundException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="InvoiceService">
@@ -126,6 +141,14 @@
     </wsdl:input>
       <wsdl:output message="tns:getInvoicesResponse" name="getInvoicesResponse">
     </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmInvoicePayment">
+      <wsdl:input message="tns:confirmInvoicePayment" name="confirmInvoicePayment">
+    </wsdl:input>
+      <wsdl:output message="tns:confirmInvoicePaymentResponse" name="confirmInvoicePaymentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InvoiceNotFoundException" name="InvoiceNotFoundException">
+    </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="InvoiceServiceImplServiceSoapBinding" type="tns:InvoiceService">
@@ -138,6 +161,18 @@
       <wsdl:output name="getInvoicesResponse">
         <soap:body use="literal"/>
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmInvoicePayment">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="confirmInvoicePayment">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="confirmInvoicePaymentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvoiceNotFoundException">
+        <soap:fault name="InvoiceNotFoundException" use="literal"/>
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="InvoiceServiceImplService">

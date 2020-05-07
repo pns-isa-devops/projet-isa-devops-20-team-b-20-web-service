@@ -8,6 +8,7 @@ import javax.jws.WebService;
 
 import fr.polytech.entities.Invoice;
 import fr.polytech.invoice.components.InvoiceManager;
+import fr.polytech.invoice.exceptions.InvoiceNotFoundException;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dronedelivery/invoice")
 @Stateless(name = "InvoiceWS")
@@ -18,5 +19,10 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public List<Invoice> getInvoices() {
         return invoiceManager.getInvoices();
+    }
+
+    @Override
+    public Invoice confirmInvoicePayment(String invoiceID) throws InvoiceNotFoundException {
+        return invoiceManager.confirmInvoicePayment(invoiceID) ;
     }
 }
