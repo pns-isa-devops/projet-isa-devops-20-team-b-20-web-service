@@ -28,14 +28,14 @@ public interface DeliveryService {
                         NoTimeSlotAttachOnDeliveryException, DroneNotAvailableException;
 
         /**
-         * Shows the closest delivery to process, according to the planning
+         * Shows the closest delivery to process, according to the planning, start from the given date
          *
          * @return Delivery
          * @throws DroneNotFoundException
          * @throws Exception
          */
         @WebMethod
-        Delivery getNextDelivery() throws DroneNotFoundException;
+        Delivery getNextDelivery(@WebParam(name = "date") String date) throws DroneNotFoundException;
 
         @WebMethod
         List<Delivery> checkForNewParcels() throws ExternalCarrierApiException, UnknownParcelException;
