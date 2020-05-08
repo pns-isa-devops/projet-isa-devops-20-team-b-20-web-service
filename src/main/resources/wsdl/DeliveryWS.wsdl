@@ -122,12 +122,6 @@
       <xs:element minOccurs="0" name="message" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="DroneNotFoundException" type="tns:DroneNotFoundException"/>
-  <xs:complexType name="DroneNotFoundException">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="message" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
   <xs:element name="UnknownDeliveryException" type="tns:UnknownDeliveryException"/>
   <xs:complexType name="UnknownDeliveryException">
     <xs:sequence>
@@ -139,6 +133,12 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone">
   <xsd:element name="ExternalCarrierApiException" type="tns:ExternalCarrierApiException"/>
   <xsd:complexType name="ExternalCarrierApiException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="DroneNotFoundException" type="tns:DroneNotFoundException"/>
+  <xsd:complexType name="DroneNotFoundException">
     <xsd:sequence>
       <xsd:element minOccurs="0" name="message" type="xsd:string"/>
     </xsd:sequence>
@@ -214,7 +214,7 @@
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="DroneNotFoundException">
-    <wsdl:part element="tns:DroneNotFoundException" name="DroneNotFoundException">
+    <wsdl:part element="ns1:DroneNotFoundException" name="DroneNotFoundException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="startDeliveryResponse">

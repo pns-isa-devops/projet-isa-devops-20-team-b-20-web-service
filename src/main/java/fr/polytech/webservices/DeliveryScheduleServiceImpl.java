@@ -11,6 +11,7 @@ import fr.polytech.entities.Delivery;
 import fr.polytech.entities.TimeState;
 import fr.polytech.schedule.components.DeliveryScheduler;
 import fr.polytech.schedule.exception.DroneNotFoundException;
+import fr.polytech.schedule.exception.OutsideOfDeliveryHoursException;
 import fr.polytech.schedule.exception.TimeslotUnvailableException;
 import fr.polytech.warehouse.components.DeliveryModifier;
 import fr.polytech.warehouse.exception.UnknownDeliveryException;
@@ -26,8 +27,8 @@ public class DeliveryScheduleServiceImpl implements DeliveryScheduleService {
     private DeliveryModifier deliveryModifier;
 
     @Override
-    public void scheduleDelivery(String date, String deliveryId)
-            throws DroneNotFoundException, TimeslotUnvailableException, UnknownDeliveryException {
+    public void scheduleDelivery(String date, String deliveryId) throws DroneNotFoundException,
+            TimeslotUnvailableException, UnknownDeliveryException, OutsideOfDeliveryHoursException {
         Delivery delivery = deliveryModifier.findDelivery(deliveryId);
         String[] time = date.split(":");
         GregorianCalendar c = new GregorianCalendar();

@@ -7,6 +7,7 @@ import java.util.List;
 import fr.polytech.entities.TimeState;
 
 import fr.polytech.schedule.exception.DroneNotFoundException;
+import fr.polytech.schedule.exception.OutsideOfDeliveryHoursException;
 import fr.polytech.schedule.exception.TimeslotUnvailableException;
 import fr.polytech.warehouse.exception.UnknownDeliveryException;
 
@@ -19,12 +20,14 @@ public interface DeliveryScheduleService {
      * @throws UnknownDeliveryException
      * @throws TimeslotUnvailableException
      * @throws DroneNotFoundException
+     * @throws OutsideOfDeliveryHoursException
      * @throws Exception
      */
     @WebMethod
     void scheduleDelivery(@WebParam(name = "date") String date, @WebParam(name = "delivery_id") String deliveryId)
-            throws UnknownDeliveryException, DroneNotFoundException, TimeslotUnvailableException;
-    
+            throws UnknownDeliveryException, DroneNotFoundException, TimeslotUnvailableException,
+            OutsideOfDeliveryHoursException;
+
     @WebMethod
-    List<TimeState> getCurrentPlanning(@WebParam(name = "droneid") String droneID) throws DroneNotFoundException; 
+    List<TimeState> getCurrentPlanning(@WebParam(name = "droneid") String droneID) throws DroneNotFoundException;
 }
