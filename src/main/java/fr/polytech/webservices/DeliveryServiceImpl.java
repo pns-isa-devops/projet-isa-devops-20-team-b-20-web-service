@@ -9,15 +9,14 @@ import javax.jws.WebService;
 import fr.polytech.dronepark.exception.DroneNotAvailableException;
 import fr.polytech.dronepark.exception.ExternalDroneApiException;
 import fr.polytech.entities.Delivery;
-import fr.polytech.entities.Drone;
 import fr.polytech.schedule.components.DeliveryOrganizer;
 import fr.polytech.schedule.exception.DroneNotFoundException;
 import fr.polytech.shipment.components.DeliveryInitializer;
 import fr.polytech.shipment.exception.NoDroneAttachOnDeliveryException;
 import fr.polytech.shipment.exception.NoTimeSlotAttachOnDeliveryException;
-import fr.polytech.warehouse.exception.UnknownDeliveryException;
 import fr.polytech.warehouse.components.DeliveryModifier;
 import fr.polytech.warehouse.exception.ExternalCarrierApiException;
+import fr.polytech.warehouse.exception.UnknownDeliveryException;
 import fr.polytech.warehouse.exception.UnknownParcelException;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery")

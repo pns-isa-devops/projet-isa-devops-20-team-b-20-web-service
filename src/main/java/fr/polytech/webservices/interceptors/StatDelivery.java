@@ -9,7 +9,6 @@ import javax.interceptor.InvocationContext;
 
 import fr.polytech.entities.Delivery;
 import fr.polytech.warehouse.components.DeliveryModifier;
-import fr.polytech.warehouse.exception.UnknownDeliveryException;
 import statistics.StatisticsCreator;
 
 public class StatDelivery implements Serializable {
