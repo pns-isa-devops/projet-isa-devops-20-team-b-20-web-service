@@ -50,7 +50,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Delivery getNextDelivery() throws DroneNotFoundException {
+    public Delivery getNextDelivery() {
         return deliveryOrganizer.getNextDelivery();
     }
 

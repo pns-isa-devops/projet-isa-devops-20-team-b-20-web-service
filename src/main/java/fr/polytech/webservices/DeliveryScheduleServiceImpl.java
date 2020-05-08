@@ -11,9 +11,14 @@ import fr.polytech.entities.Delivery;
 import fr.polytech.entities.TimeState;
 import fr.polytech.schedule.components.DeliveryScheduler;
 import fr.polytech.schedule.exception.DroneNotFoundException;
-import fr.polytech.schedule.exception.TimeslotUnvailableException;
+import fr.polytech.schedule.exception.NoFreeDroneAtThisTimeSlotException;
+import fr.polytech.schedule.exception.OutOfWorkingHourTimeSlotException;
+import fr.polytech.schedule.exception.ZeroDronesInWarehouseException;
 import fr.polytech.warehouse.components.DeliveryModifier;
 import fr.polytech.warehouse.exception.UnknownDeliveryException;
+import java.util.List;
+
+import fr.polytech.entities.TimeState;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule")
 @Stateless(name = "DeliveryScheduleWS")
@@ -27,7 +32,7 @@ public class DeliveryScheduleServiceImpl implements DeliveryScheduleService {
 
     @Override
     public void scheduleDelivery(String date, String deliveryId)
-            throws DroneNotFoundException, TimeslotUnvailableException, UnknownDeliveryException {
+            throws DroneNotFoundException, OutOfWorkingHourTimeSlotException, UnknownDeliveryException, NoFreeDroneAtThisTimeSlotException, ZeroDronesInWarehouseException {
         Delivery delivery = deliveryModifier.findDelivery(deliveryId);
         String[] time = date.split(":");
         GregorianCalendar c = new GregorianCalendar();
@@ -37,7 +42,7 @@ public class DeliveryScheduleServiceImpl implements DeliveryScheduleService {
     }
 
     @Override
-    public List<TimeState> getCurrentPlanning(String droneID) throws DroneNotFoundException {
+    public List<TimeState> getCurrentPlanning(String droneID) throws DroneNotFoundException, ZeroDronesInWarehouseException {
         List<TimeState> states = deliveryScheduler.getCurrentPlanning(droneID);
         System.out.println(states);
         return states;

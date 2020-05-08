@@ -40,7 +40,7 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TimeslotUnvailableException" type="tns:TimeslotUnvailableException"/>
-  <xs:complexType name="TimeslotUnvailableException">
+  <xs:complexType name="OutOfWorkingHourTimeSlotException">
     <xs:sequence>
       <xs:element minOccurs="0" name="message" type="xs:string"/>
     </xs:sequence>
