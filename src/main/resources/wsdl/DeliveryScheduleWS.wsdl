@@ -1,29 +1,38 @@
-<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" name="DeliveryScheduleServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule">
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns4="http://schemas.xmlsoap.org/soap/http" xmlns:ns3="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" xmlns:ns2="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/schedule" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" name="DeliveryScheduleServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule">
   <wsdl:types>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule" version="1.0">
+
   <xs:element name="getCurrentPlanning" type="tns:getCurrentPlanning"/>
+
   <xs:element name="getCurrentPlanningResponse" type="tns:getCurrentPlanningResponse"/>
+
   <xs:element name="scheduleDelivery" type="tns:scheduleDelivery"/>
+
   <xs:element name="scheduleDeliveryResponse" type="tns:scheduleDeliveryResponse"/>
+
   <xs:complexType name="getCurrentPlanning">
     <xs:sequence>
       <xs:element minOccurs="0" name="droneid" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="getCurrentPlanningResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:timeState"/>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="scheduleDelivery">
     <xs:sequence>
       <xs:element minOccurs="0" name="date" type="xs:string"/>
       <xs:element minOccurs="0" name="delivery_id" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
+
   <xs:complexType name="scheduleDeliveryResponse">
     <xs:sequence/>
   </xs:complexType>
+
   <xs:simpleType name="timeState">
     <xs:restriction base="xs:string">
       <xs:enumeration value="DELIVERY"/>
@@ -33,6 +42,7 @@
       <xs:enumeration value="AVAILABLE"/>
     </xs:restriction>
   </xs:simpleType>
+<<<<<<< HEAD
   <xs:element name="DroneNotFoundException" type="tns:DroneNotFoundException"/>
   <xs:complexType name="DroneNotFoundException">
     <xs:sequence>
@@ -57,8 +67,33 @@
       <xs:element minOccurs="0" name="message" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
+=======
+
+>>>>>>> add custom exception pns-isa-devops/projet-isa-devops-20-team-b-20#151
 </xs:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone">
+  <xsd:element name="DroneNotFoundException" type="tns:DroneNotFoundException"/>
+  <xsd:complexType name="DroneNotFoundException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/schedule" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/schedule">
+  <xsd:element name="TimeslotUnvailableException" type="tns:TimeslotUnvailableException"/>
+  <xsd:complexType name="TimeslotUnvailableException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery">
+  <xsd:element name="OutsideOfDeliveryHoursException" type="tns:OutsideOfDeliveryHoursException"/>
+  <xsd:complexType name="OutsideOfDeliveryHoursException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
   <xsd:element name="UnknownDeliveryException" type="tns:UnknownDeliveryException"/>
   <xsd:complexType name="UnknownDeliveryException">
     <xsd:sequence>
@@ -81,15 +116,24 @@
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="DroneNotFoundException">
-    <wsdl:part element="tns:DroneNotFoundException" name="DroneNotFoundException">
+    <wsdl:part element="ns1:DroneNotFoundException" name="DroneNotFoundException">
     </wsdl:part>
   </wsdl:message>
+<<<<<<< HEAD
   <wsdl:message name="NoFreeDroneAtThisTimeSlotException">
     <wsdl:part element="tns:NoFreeDroneAtThisTimeSlotException" name="NoFreeDroneAtThisTimeSlotException">
+=======
+  <wsdl:message name="TimeslotUnvailableException">
+    <wsdl:part element="ns2:TimeslotUnvailableException" name="TimeslotUnvailableException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="OutsideOfDeliveryHoursException">
+    <wsdl:part element="ns3:OutsideOfDeliveryHoursException" name="OutsideOfDeliveryHoursException">
+>>>>>>> add custom exception pns-isa-devops/projet-isa-devops-20-team-b-20#151
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="UnknownDeliveryException">
-    <wsdl:part element="ns1:UnknownDeliveryException" name="UnknownDeliveryException">
+    <wsdl:part element="ns3:UnknownDeliveryException" name="UnknownDeliveryException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="OutOfWorkingHourTimeSlotException">
@@ -129,6 +173,8 @@
       <wsdl:fault message="tns:DroneNotFoundException" name="DroneNotFoundException">
     </wsdl:fault>
       <wsdl:fault message="tns:ZeroDronesInWarehouseException" name="ZeroDronesInWarehouseException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:OutsideOfDeliveryHoursException" name="OutsideOfDeliveryHoursException">
     </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
@@ -171,6 +217,9 @@
       </wsdl:fault>
       <wsdl:fault name="ZeroDronesInWarehouseException">
         <soap:fault name="ZeroDronesInWarehouseException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="OutsideOfDeliveryHoursException">
+        <soap:fault name="OutsideOfDeliveryHoursException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>

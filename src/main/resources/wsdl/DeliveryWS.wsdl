@@ -136,6 +136,12 @@
       <xsd:element minOccurs="0" name="message" type="xsd:string"/>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="DroneNotFoundException" type="tns:DroneNotFoundException"/>
+  <xsd:complexType name="DroneNotFoundException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
   <xsd:element name="DroneNotAvailableException" type="tns:DroneNotAvailableException"/>
   <xsd:complexType name="DroneNotAvailableException">
     <xsd:sequence>
@@ -206,6 +212,13 @@
     <wsdl:part element="tns:UnknownDeliveryException" name="UnknownDeliveryException">
     </wsdl:part>
   </wsdl:message>
+<<<<<<< HEAD
+=======
+  <wsdl:message name="DroneNotFoundException">
+    <wsdl:part element="ns1:DroneNotFoundException" name="DroneNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+>>>>>>> add custom exception pns-isa-devops/projet-isa-devops-20-team-b-20#151
   <wsdl:message name="startDeliveryResponse">
     <wsdl:part element="tns:startDeliveryResponse" name="parameters">
     </wsdl:part>
