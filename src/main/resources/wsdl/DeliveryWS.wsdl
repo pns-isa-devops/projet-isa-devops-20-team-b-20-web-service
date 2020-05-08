@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="DeliveryServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" name="DeliveryServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery">
   <wsdl:types>
-<xs:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery">
   <xs:element name="checkForNewParcels" type="tns:checkForNewParcels"/>
   <xs:element name="checkForNewParcelsResponse" type="tns:checkForNewParcelsResponse"/>
   <xs:element name="getNextDelivery" type="tns:getNextDelivery"/>
@@ -130,7 +129,7 @@
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
-<xsd:schema xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone">
   <xsd:element name="ExternalCarrierApiException" type="tns:ExternalCarrierApiException"/>
   <xsd:complexType name="ExternalCarrierApiException">
     <xsd:sequence>
@@ -164,88 +163,88 @@
 </xsd:schema>
   </wsdl:types>
   <wsdl:message name="NoDroneAttachOnDeliveryException">
-    <wsdl:part name="NoDroneAttachOnDeliveryException" element="ns1:NoDroneAttachOnDeliveryException">
+    <wsdl:part element="ns1:NoDroneAttachOnDeliveryException" name="NoDroneAttachOnDeliveryException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="DroneNotAvailableException">
-    <wsdl:part name="DroneNotAvailableException" element="ns1:DroneNotAvailableException">
+    <wsdl:part element="ns1:DroneNotAvailableException" name="DroneNotAvailableException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="UnknownParcelException">
-    <wsdl:part name="UnknownParcelException" element="tns:UnknownParcelException">
+    <wsdl:part element="tns:UnknownParcelException" name="UnknownParcelException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="checkForNewParcelsResponse">
-    <wsdl:part name="parameters" element="tns:checkForNewParcelsResponse">
+    <wsdl:part element="tns:checkForNewParcelsResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="checkForNewParcels">
-    <wsdl:part name="parameters" element="tns:checkForNewParcels">
+    <wsdl:part element="tns:checkForNewParcels" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="ExternalCarrierApiException">
-    <wsdl:part name="ExternalCarrierApiException" element="ns1:ExternalCarrierApiException">
+    <wsdl:part element="ns1:ExternalCarrierApiException" name="ExternalCarrierApiException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getNextDeliveryResponse">
-    <wsdl:part name="parameters" element="tns:getNextDeliveryResponse">
+    <wsdl:part element="tns:getNextDeliveryResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getNextDelivery">
-    <wsdl:part name="parameters" element="tns:getNextDelivery">
+    <wsdl:part element="tns:getNextDelivery" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="startDelivery">
-    <wsdl:part name="parameters" element="tns:startDelivery">
+    <wsdl:part element="tns:startDelivery" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="ExternalDroneApiException">
-    <wsdl:part name="ExternalDroneApiException" element="ns1:ExternalDroneApiException">
+    <wsdl:part element="ns1:ExternalDroneApiException" name="ExternalDroneApiException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="UnknownDeliveryException">
-    <wsdl:part name="UnknownDeliveryException" element="tns:UnknownDeliveryException">
+    <wsdl:part element="tns:UnknownDeliveryException" name="UnknownDeliveryException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="startDeliveryResponse">
-    <wsdl:part name="parameters" element="tns:startDeliveryResponse">
+    <wsdl:part element="tns:startDeliveryResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="NoTimeSlotAttachOnDeliveryException">
-    <wsdl:part name="NoTimeSlotAttachOnDeliveryException" element="ns1:NoTimeSlotAttachOnDeliveryException">
+    <wsdl:part element="ns1:NoTimeSlotAttachOnDeliveryException" name="NoTimeSlotAttachOnDeliveryException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="DeliveryService">
     <wsdl:operation name="checkForNewParcels">
-      <wsdl:input name="checkForNewParcels" message="tns:checkForNewParcels">
+      <wsdl:input message="tns:checkForNewParcels" name="checkForNewParcels">
     </wsdl:input>
-      <wsdl:output name="checkForNewParcelsResponse" message="tns:checkForNewParcelsResponse">
+      <wsdl:output message="tns:checkForNewParcelsResponse" name="checkForNewParcelsResponse">
     </wsdl:output>
-      <wsdl:fault name="UnknownParcelException" message="tns:UnknownParcelException">
+      <wsdl:fault message="tns:UnknownParcelException" name="UnknownParcelException">
     </wsdl:fault>
-      <wsdl:fault name="ExternalCarrierApiException" message="tns:ExternalCarrierApiException">
+      <wsdl:fault message="tns:ExternalCarrierApiException" name="ExternalCarrierApiException">
     </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getNextDelivery">
-      <wsdl:input name="getNextDelivery" message="tns:getNextDelivery">
+      <wsdl:input message="tns:getNextDelivery" name="getNextDelivery">
     </wsdl:input>
-      <wsdl:output name="getNextDeliveryResponse" message="tns:getNextDeliveryResponse">
+      <wsdl:output message="tns:getNextDeliveryResponse" name="getNextDeliveryResponse">
     </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="startDelivery">
-      <wsdl:input name="startDelivery" message="tns:startDelivery">
+      <wsdl:input message="tns:startDelivery" name="startDelivery">
     </wsdl:input>
-      <wsdl:output name="startDeliveryResponse" message="tns:startDeliveryResponse">
+      <wsdl:output message="tns:startDeliveryResponse" name="startDeliveryResponse">
     </wsdl:output>
-      <wsdl:fault name="UnknownDeliveryException" message="tns:UnknownDeliveryException">
+      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
     </wsdl:fault>
-      <wsdl:fault name="DroneNotAvailableException" message="tns:DroneNotAvailableException">
+      <wsdl:fault message="tns:DroneNotAvailableException" name="DroneNotAvailableException">
     </wsdl:fault>
-      <wsdl:fault name="NoTimeSlotAttachOnDeliveryException" message="tns:NoTimeSlotAttachOnDeliveryException">
+      <wsdl:fault message="tns:NoTimeSlotAttachOnDeliveryException" name="NoTimeSlotAttachOnDeliveryException">
     </wsdl:fault>
-      <wsdl:fault name="NoDroneAttachOnDeliveryException" message="tns:NoDroneAttachOnDeliveryException">
+      <wsdl:fault message="tns:NoDroneAttachOnDeliveryException" name="NoDroneAttachOnDeliveryException">
     </wsdl:fault>
-      <wsdl:fault name="ExternalDroneApiException" message="tns:ExternalDroneApiException">
+      <wsdl:fault message="tns:ExternalDroneApiException" name="ExternalDroneApiException">
     </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
@@ -301,8 +300,8 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="DeliveryServiceImplService">
-    <wsdl:port name="DeliveryServiceImplPort" binding="tns:DeliveryServiceImplServiceSoapBinding">
-      <soap:address location="http://localhost:9090/DeliveryServiceImplPort"/>
+    <wsdl:port binding="tns:DeliveryServiceImplServiceSoapBinding" name="DeliveryServiceImplPort">
+      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/DeliveryWS"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
