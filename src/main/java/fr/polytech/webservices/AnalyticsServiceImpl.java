@@ -1,6 +1,7 @@
 package fr.polytech.webservices;
 
 import statistics.StatisticsCollector;
+import statistics.exception.NoOccupancyOnThatDroneException;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -13,7 +14,7 @@ public class AnalyticsServiceImpl implements AnalyticsService {
     private StatisticsCollector statisticsCollector;
 
     @Override
-    public double getOccupancyRate(String droneId) {
+    public double getOccupancyRate(String droneId) throws NoOccupancyOnThatDroneException {
         return statisticsCollector.getOccupancyRate(droneId);
     }
 }

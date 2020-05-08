@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/analytics" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="AnalyticsServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/analytics">
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/analytics" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" name="AnalyticsServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/analytics">
   <wsdl:types>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/analytics" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/analytics" version="1.0">
 
@@ -19,6 +19,14 @@
   </xs:complexType>
 
 </xs:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone">
+  <xsd:element name="NoOccupancyOnThatDroneException" type="tns:NoOccupancyOnThatDroneException"/>
+  <xsd:complexType name="NoOccupancyOnThatDroneException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
   </wsdl:types>
   <wsdl:message name="getOccupancyRate">
     <wsdl:part element="tns:getOccupancyRate" name="parameters">
@@ -28,12 +36,18 @@
     <wsdl:part element="tns:getOccupancyRateResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="NoOccupancyOnThatDroneException">
+    <wsdl:part element="ns1:NoOccupancyOnThatDroneException" name="NoOccupancyOnThatDroneException">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="AnalyticsService">
     <wsdl:operation name="getOccupancyRate">
       <wsdl:input message="tns:getOccupancyRate" name="getOccupancyRate">
     </wsdl:input>
       <wsdl:output message="tns:getOccupancyRateResponse" name="getOccupancyRateResponse">
     </wsdl:output>
+      <wsdl:fault message="tns:NoOccupancyOnThatDroneException" name="NoOccupancyOnThatDroneException">
+    </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="AnalyticsServiceImplServiceSoapBinding" type="tns:AnalyticsService">
@@ -46,6 +60,9 @@
       <wsdl:output name="getOccupancyRateResponse">
         <soap:body use="literal"/>
       </wsdl:output>
+      <wsdl:fault name="NoOccupancyOnThatDroneException">
+        <soap:fault name="NoOccupancyOnThatDroneException" use="literal"/>
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="AnalyticsServiceImplService">
