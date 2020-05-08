@@ -1,5 +1,6 @@
 package fr.polytech.webservices;
 
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -11,6 +12,7 @@ import fr.polytech.dronepark.exception.ExternalDroneApiException;
 import fr.polytech.entities.Delivery;
 import fr.polytech.schedule.components.DeliveryOrganizer;
 import fr.polytech.schedule.exception.DroneNotFoundException;
+import fr.polytech.schedule.exception.ZeroDronesInWarehouseException;
 import fr.polytech.shipment.components.DeliveryInitializer;
 import fr.polytech.shipment.exception.NoDroneAttachOnDeliveryException;
 import fr.polytech.shipment.exception.NoTimeSlotAttachOnDeliveryException;
@@ -50,8 +52,13 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public Delivery getNextDelivery() {
-        return deliveryOrganizer.getNextDelivery();
+    public Delivery getNextDelivery(String date) throws DroneNotFoundException, ZeroDronesInWarehouseException {
+        String[] time = date.split(":");
+        GregorianCalendar c = new GregorianCalendar();
+        c.set(GregorianCalendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
+        c.set(GregorianCalendar.MINUTE, Integer.parseInt(time[1]));
+        System.out.println(deliveryOrganizer.getNextDelivery(c));
+        return deliveryOrganizer.getNextDelivery(c);
     }
 
     @Override

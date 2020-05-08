@@ -1,320 +1,288 @@
-<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" name="DeliveryServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery">
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" name="DeliveryServiceImplService" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery">
   <wsdl:types>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery">
-  <xs:element name="checkForNewParcels" type="tns:checkForNewParcels"/>
-  <xs:element name="checkForNewParcelsResponse" type="tns:checkForNewParcelsResponse"/>
-  <xs:element name="getNextDelivery" type="tns:getNextDelivery"/>
-  <xs:element name="getNextDeliveryResponse" type="tns:getNextDeliveryResponse"/>
-  <xs:element name="startDelivery" type="tns:startDelivery"/>
-  <xs:element name="startDeliveryResponse" type="tns:startDeliveryResponse"/>
-  <xs:complexType name="checkForNewParcels">
-    <xs:sequence/>
-  </xs:complexType>
-  <xs:complexType name="checkForNewParcelsResponse">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:delivery"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="delivery">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="deliveryId" type="xs:string"/>
-      <xs:element minOccurs="0" name="drone" type="tns:drone"/>
-      <xs:element minOccurs="0" name="invoice" type="tns:invoice"/>
-      <xs:element minOccurs="0" name="parcel" type="tns:parcel"/>
-      <xs:element minOccurs="0" name="status" type="tns:deliveryStatus"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="drone">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="currentDelivery" type="tns:delivery"/>
-      <xs:element minOccurs="0" name="droneId" type="xs:string"/>
-      <xs:element minOccurs="0" name="droneStatus" type="tns:droneStatus"/>
-      <xs:element name="flightTime" type="xs:int"/>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="timeSlots" nillable="true" type="tns:timeSlot"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="timeSlot">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="date" type="xs:dateTime"/>
-      <xs:element minOccurs="0" name="delivery" type="tns:delivery"/>
-      <xs:element minOccurs="0" name="drone" type="tns:drone"/>
-      <xs:element name="id" type="xs:int"/>
-      <xs:element minOccurs="0" name="state" type="tns:timeState"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="invoice">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="deliveries" nillable="true" type="tns:delivery"/>
-      <xs:element minOccurs="0" name="invoiceId" type="xs:string"/>
-      <xs:element name="price" type="xs:float"/>
-      <xs:element minOccurs="0" name="status" type="tns:invoiceStatus"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="parcel">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="address" type="xs:string"/>
-      <xs:element minOccurs="0" name="carrier" type="xs:string"/>
-      <xs:element minOccurs="0" name="customerName" type="xs:string"/>
-      <xs:element name="id" type="xs:int"/>
-      <xs:element minOccurs="0" name="parcelId" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="droneInformation">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="date" type="xs:dateTime"/>
-      <xs:element minOccurs="0" name="drone" type="tns:drone"/>
-      <xs:element name="id" type="xs:int"/>
-      <xs:element name="occupationRate" type="xs:double"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getNextDelivery">
-    <xs:sequence/>
-  </xs:complexType>
-  <xs:complexType name="getNextDeliveryResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:delivery"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="startDelivery">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="delivery_id" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="startDeliveryResponse">
-    <xs:sequence/>
-  </xs:complexType>
-  <xs:simpleType name="droneStatus">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="ON_CHARGE"/>
-      <xs:enumeration value="ON_REPAIR"/>
-      <xs:enumeration value="ON_DELIVERY"/>
-      <xs:enumeration value="AVAILABLE"/>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="timeState">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="DELIVERY"/>
-      <xs:enumeration value="CHARGING"/>
-      <xs:enumeration value="REVIEW"/>
-      <xs:enumeration value="RESERVED_FOR_CHARGE"/>
-      <xs:enumeration value="AVAILABLE"/>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="invoiceStatus">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="NOT_PAID"/>
-      <xs:enumeration value="PAID"/>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="deliveryStatus">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="FAILED"/>
-      <xs:enumeration value="NOT_DELIVERED"/>
-      <xs:enumeration value="ONGOING"/>
-      <xs:enumeration value="DELIVERED"/>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="UnknownParcelException" type="tns:UnknownParcelException"/>
-  <xs:complexType name="UnknownParcelException">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="parcelNumber" type="xs:string"/>
-      <xs:element minOccurs="0" name="message" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="UnknownDeliveryException" type="tns:UnknownDeliveryException"/>
-  <xs:complexType name="UnknownDeliveryException">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="parcelNumber" type="xs:string"/>
-      <xs:element minOccurs="0" name="message" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-</xs:schema>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone">
-  <xsd:element name="ExternalCarrierApiException" type="tns:ExternalCarrierApiException"/>
-  <xsd:complexType name="ExternalCarrierApiException">
-    <xsd:sequence>
-      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:element name="DroneNotFoundException" type="tns:DroneNotFoundException"/>
-  <xsd:complexType name="DroneNotFoundException">
-    <xsd:sequence>
-      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:element name="DroneNotAvailableException" type="tns:DroneNotAvailableException"/>
-  <xsd:complexType name="DroneNotAvailableException">
-    <xsd:sequence>
-      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:element name="NoDroneAttachOnDeliveryException" type="tns:NoDroneAttachOnDeliveryException"/>
-  <xsd:complexType name="NoDroneAttachOnDeliveryException">
-    <xsd:sequence>
-      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:element name="NoTimeSlotAttachOnDeliveryException" type="tns:NoTimeSlotAttachOnDeliveryException"/>
-  <xsd:complexType name="NoTimeSlotAttachOnDeliveryException">
-    <xsd:sequence>
-      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:element name="ExternalDroneApiException" type="tns:ExternalDroneApiException"/>
-  <xsd:complexType name="ExternalDroneApiException">
-    <xsd:sequence>
-      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
-</xsd:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery">
+      <xs:element name="checkForNewParcels" type="tns:checkForNewParcels" />
+      <xs:element name="checkForNewParcelsResponse" type="tns:checkForNewParcelsResponse" />
+      <xs:element name="getNextDelivery" type="tns:getNextDelivery" />
+      <xs:element name="getNextDeliveryResponse" type="tns:getNextDeliveryResponse" />
+      <xs:element name="startDelivery" type="tns:startDelivery" />
+      <xs:element name="startDeliveryResponse" type="tns:startDeliveryResponse" />
+      <xs:complexType name="checkForNewParcels">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="checkForNewParcelsResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:delivery" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="delivery">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="deliveryId" type="xs:string" />
+          <xs:element minOccurs="0" name="drone" type="tns:drone" />
+          <xs:element minOccurs="0" name="invoice" type="tns:invoice" />
+          <xs:element minOccurs="0" name="parcel" type="tns:parcel" />
+          <xs:element minOccurs="0" name="status" type="tns:deliveryStatus" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="drone">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="currentDelivery" type="tns:delivery" />
+          <xs:element minOccurs="0" name="droneId" type="xs:string" />
+          <xs:element minOccurs="0" name="droneStatus" type="tns:droneStatus" />
+          <xs:element name="flightTime" type="xs:int" />
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="timeSlots" nillable="true" type="tns:timeSlot" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="timeSlot">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="date" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="delivery" type="tns:delivery" />
+          <xs:element minOccurs="0" name="drone" type="tns:drone" />
+          <xs:element name="id" type="xs:int" />
+          <xs:element minOccurs="0" name="state" type="tns:timeState" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="invoice">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="deliveries" nillable="true" type="tns:delivery" />
+          <xs:element minOccurs="0" name="invoiceId" type="xs:string" />
+          <xs:element name="price" type="xs:float" />
+          <xs:element minOccurs="0" name="status" type="tns:invoiceStatus" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="parcel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="address" type="xs:string" />
+          <xs:element minOccurs="0" name="carrier" type="xs:string" />
+          <xs:element minOccurs="0" name="customerName" type="xs:string" />
+          <xs:element name="id" type="xs:int" />
+          <xs:element minOccurs="0" name="parcelId" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="droneInformation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="date" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="drone" type="tns:drone" />
+          <xs:element name="id" type="xs:int" />
+          <xs:element name="occupationRate" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getNextDelivery">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getNextDeliveryResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:delivery" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="startDelivery">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="delivery_id" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="startDeliveryResponse">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:simpleType name="droneStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ON_CHARGE" />
+          <xs:enumeration value="ON_REPAIR" />
+          <xs:enumeration value="ON_DELIVERY" />
+          <xs:enumeration value="AVAILABLE" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="timeState">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="DELIVERY" />
+          <xs:enumeration value="CHARGING" />
+          <xs:enumeration value="REVIEW" />
+          <xs:enumeration value="RESERVED_FOR_CHARGE" />
+          <xs:enumeration value="AVAILABLE" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="invoiceStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="NOT_PAID" />
+          <xs:enumeration value="PAID" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="deliveryStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="FAILED" />
+          <xs:enumeration value="NOT_DELIVERED" />
+          <xs:enumeration value="ONGOING" />
+          <xs:enumeration value="DELIVERED" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="UnknownParcelException" type="tns:UnknownParcelException" />
+      <xs:complexType name="UnknownParcelException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="parcelNumber" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="UnknownDeliveryException" type="tns:UnknownDeliveryException" />
+      <xs:complexType name="UnknownDeliveryException">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="parcelNumber" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.polytech.unice.fr/si/4a/isa/dronedelivery/drone">
+      <xsd:element name="ExternalCarrierApiException" type="tns:ExternalCarrierApiException" />
+      <xsd:complexType name="ExternalCarrierApiException">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="message" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DroneNotFoundException" type="tns:DroneNotFoundException" />
+      <xsd:complexType name="DroneNotFoundException">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="message" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="DroneNotAvailableException" type="tns:DroneNotAvailableException" />
+      <xsd:complexType name="DroneNotAvailableException">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="message" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="NoDroneAttachOnDeliveryException" type="tns:NoDroneAttachOnDeliveryException" />
+      <xsd:complexType name="NoDroneAttachOnDeliveryException">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="message" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="NoTimeSlotAttachOnDeliveryException" type="tns:NoTimeSlotAttachOnDeliveryException" />
+      <xsd:complexType name="NoTimeSlotAttachOnDeliveryException">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="message" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ExternalDroneApiException" type="tns:ExternalDroneApiException" />
+      <xsd:complexType name="ExternalDroneApiException">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="message" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
   </wsdl:types>
   <wsdl:message name="NoDroneAttachOnDeliveryException">
-    <wsdl:part element="ns1:NoDroneAttachOnDeliveryException" name="NoDroneAttachOnDeliveryException">
-    </wsdl:part>
+    <wsdl:part element="ns1:NoDroneAttachOnDeliveryException" name="NoDroneAttachOnDeliveryException"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="DroneNotAvailableException">
-    <wsdl:part element="ns1:DroneNotAvailableException" name="DroneNotAvailableException">
-    </wsdl:part>
+    <wsdl:part element="ns1:DroneNotAvailableException" name="DroneNotAvailableException"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="UnknownParcelException">
-    <wsdl:part element="tns:UnknownParcelException" name="UnknownParcelException">
-    </wsdl:part>
+    <wsdl:part element="tns:UnknownParcelException" name="UnknownParcelException"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="checkForNewParcelsResponse">
-    <wsdl:part element="tns:checkForNewParcelsResponse" name="parameters">
-    </wsdl:part>
+    <wsdl:part element="tns:checkForNewParcelsResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="checkForNewParcels">
-    <wsdl:part element="tns:checkForNewParcels" name="parameters">
-    </wsdl:part>
+    <wsdl:part element="tns:checkForNewParcels" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="ExternalCarrierApiException">
-    <wsdl:part element="ns1:ExternalCarrierApiException" name="ExternalCarrierApiException">
-    </wsdl:part>
+    <wsdl:part element="ns1:ExternalCarrierApiException" name="ExternalCarrierApiException"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="getNextDeliveryResponse">
-    <wsdl:part element="tns:getNextDeliveryResponse" name="parameters">
-    </wsdl:part>
+    <wsdl:part element="tns:getNextDeliveryResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="getNextDelivery">
-    <wsdl:part element="tns:getNextDelivery" name="parameters">
-    </wsdl:part>
+    <wsdl:part element="tns:getNextDelivery" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="startDelivery">
-    <wsdl:part element="tns:startDelivery" name="parameters">
-    </wsdl:part>
+    <wsdl:part element="tns:startDelivery" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="ExternalDroneApiException">
-    <wsdl:part element="ns1:ExternalDroneApiException" name="ExternalDroneApiException">
-    </wsdl:part>
+    <wsdl:part element="ns1:ExternalDroneApiException" name="ExternalDroneApiException"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="UnknownDeliveryException">
-    <wsdl:part element="tns:UnknownDeliveryException" name="UnknownDeliveryException">
-    </wsdl:part>
+    <wsdl:part element="tns:UnknownDeliveryException" name="UnknownDeliveryException"></wsdl:part>
   </wsdl:message>
-<<<<<<< HEAD
-=======
-  <wsdl:message name="DroneNotFoundException">
-    <wsdl:part element="ns1:DroneNotFoundException" name="DroneNotFoundException">
-    </wsdl:part>
-  </wsdl:message>
->>>>>>> add custom exception pns-isa-devops/projet-isa-devops-20-team-b-20#151
   <wsdl:message name="startDeliveryResponse">
-    <wsdl:part element="tns:startDeliveryResponse" name="parameters">
-    </wsdl:part>
+    <wsdl:part element="tns:startDeliveryResponse" name="parameters"></wsdl:part>
   </wsdl:message>
   <wsdl:message name="NoTimeSlotAttachOnDeliveryException">
-    <wsdl:part element="ns1:NoTimeSlotAttachOnDeliveryException" name="NoTimeSlotAttachOnDeliveryException">
-    </wsdl:part>
+    <wsdl:part element="ns1:NoTimeSlotAttachOnDeliveryException" name="NoTimeSlotAttachOnDeliveryException"></wsdl:part>
   </wsdl:message>
   <wsdl:portType name="DeliveryService">
     <wsdl:operation name="checkForNewParcels">
-      <wsdl:input message="tns:checkForNewParcels" name="checkForNewParcels">
-    </wsdl:input>
-      <wsdl:output message="tns:checkForNewParcelsResponse" name="checkForNewParcelsResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:UnknownParcelException" name="UnknownParcelException">
-    </wsdl:fault>
-      <wsdl:fault message="tns:ExternalCarrierApiException" name="ExternalCarrierApiException">
-    </wsdl:fault>
+      <wsdl:input message="tns:checkForNewParcels" name="checkForNewParcels"></wsdl:input>
+      <wsdl:output message="tns:checkForNewParcelsResponse" name="checkForNewParcelsResponse"></wsdl:output>
+      <wsdl:fault message="tns:UnknownParcelException" name="UnknownParcelException"></wsdl:fault>
+      <wsdl:fault message="tns:ExternalCarrierApiException" name="ExternalCarrierApiException"></wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getNextDelivery">
-      <wsdl:input message="tns:getNextDelivery" name="getNextDelivery">
-    </wsdl:input>
-      <wsdl:output message="tns:getNextDeliveryResponse" name="getNextDeliveryResponse">
-    </wsdl:output>
+      <wsdl:input message="tns:getNextDelivery" name="getNextDelivery"></wsdl:input>
+      <wsdl:output message="tns:getNextDeliveryResponse" name="getNextDeliveryResponse"></wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="startDelivery">
-      <wsdl:input message="tns:startDelivery" name="startDelivery">
-    </wsdl:input>
-      <wsdl:output message="tns:startDeliveryResponse" name="startDeliveryResponse">
-    </wsdl:output>
-      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException">
-    </wsdl:fault>
-      <wsdl:fault message="tns:DroneNotAvailableException" name="DroneNotAvailableException">
-    </wsdl:fault>
-      <wsdl:fault message="tns:NoTimeSlotAttachOnDeliveryException" name="NoTimeSlotAttachOnDeliveryException">
-    </wsdl:fault>
-      <wsdl:fault message="tns:NoDroneAttachOnDeliveryException" name="NoDroneAttachOnDeliveryException">
-    </wsdl:fault>
-      <wsdl:fault message="tns:ExternalDroneApiException" name="ExternalDroneApiException">
-    </wsdl:fault>
+      <wsdl:input message="tns:startDelivery" name="startDelivery"></wsdl:input>
+      <wsdl:output message="tns:startDeliveryResponse" name="startDeliveryResponse"></wsdl:output>
+      <wsdl:fault message="tns:UnknownDeliveryException" name="UnknownDeliveryException"></wsdl:fault>
+      <wsdl:fault message="tns:DroneNotAvailableException" name="DroneNotAvailableException"></wsdl:fault>
+      <wsdl:fault message="tns:NoTimeSlotAttachOnDeliveryException" name="NoTimeSlotAttachOnDeliveryException"></wsdl:fault>
+      <wsdl:fault message="tns:NoDroneAttachOnDeliveryException" name="NoDroneAttachOnDeliveryException"></wsdl:fault>
+      <wsdl:fault message="tns:ExternalDroneApiException" name="ExternalDroneApiException"></wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DeliveryServiceImplServiceSoapBinding" type="tns:DeliveryService">
-    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="checkForNewParcels">
-      <soap:operation soapAction="" style="document"/>
+      <soap:operation soapAction="" style="document" />
       <wsdl:input name="checkForNewParcels">
-        <soap:body use="literal"/>
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="checkForNewParcelsResponse">
-        <soap:body use="literal"/>
+        <soap:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="UnknownParcelException">
-        <soap:fault name="UnknownParcelException" use="literal"/>
+        <soap:fault name="UnknownParcelException" use="literal" />
       </wsdl:fault>
       <wsdl:fault name="ExternalCarrierApiException">
-        <soap:fault name="ExternalCarrierApiException" use="literal"/>
+        <soap:fault name="ExternalCarrierApiException" use="literal" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="getNextDelivery">
-      <soap:operation soapAction="" style="document"/>
+      <soap:operation soapAction="" style="document" />
       <wsdl:input name="getNextDelivery">
-        <soap:body use="literal"/>
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="getNextDeliveryResponse">
-        <soap:body use="literal"/>
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="startDelivery">
-      <soap:operation soapAction="" style="document"/>
+      <soap:operation soapAction="" style="document" />
       <wsdl:input name="startDelivery">
-        <soap:body use="literal"/>
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="startDeliveryResponse">
-        <soap:body use="literal"/>
+        <soap:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="UnknownDeliveryException">
-        <soap:fault name="UnknownDeliveryException" use="literal"/>
+        <soap:fault name="UnknownDeliveryException" use="literal" />
       </wsdl:fault>
       <wsdl:fault name="DroneNotAvailableException">
-        <soap:fault name="DroneNotAvailableException" use="literal"/>
+        <soap:fault name="DroneNotAvailableException" use="literal" />
       </wsdl:fault>
       <wsdl:fault name="NoTimeSlotAttachOnDeliveryException">
-        <soap:fault name="NoTimeSlotAttachOnDeliveryException" use="literal"/>
+        <soap:fault name="NoTimeSlotAttachOnDeliveryException" use="literal" />
       </wsdl:fault>
       <wsdl:fault name="NoDroneAttachOnDeliveryException">
-        <soap:fault name="NoDroneAttachOnDeliveryException" use="literal"/>
+        <soap:fault name="NoDroneAttachOnDeliveryException" use="literal" />
       </wsdl:fault>
       <wsdl:fault name="ExternalDroneApiException">
-        <soap:fault name="ExternalDroneApiException" use="literal"/>
+        <soap:fault name="ExternalDroneApiException" use="literal" />
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="DeliveryServiceImplService">
     <wsdl:port binding="tns:DeliveryServiceImplServiceSoapBinding" name="DeliveryServiceImplPort">
-      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/DeliveryWS"/>
+      <soap:address location="http://localhost:8080/drone-delivery-backend/webservices/DeliveryWS" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

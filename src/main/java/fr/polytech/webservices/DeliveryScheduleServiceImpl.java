@@ -11,14 +11,11 @@ import fr.polytech.entities.Delivery;
 import fr.polytech.entities.TimeState;
 import fr.polytech.schedule.components.DeliveryScheduler;
 import fr.polytech.schedule.exception.DroneNotFoundException;
-<<<<<<< HEAD
 import fr.polytech.schedule.exception.NoFreeDroneAtThisTimeSlotException;
 import fr.polytech.schedule.exception.OutOfWorkingHourTimeSlotException;
-import fr.polytech.schedule.exception.ZeroDronesInWarehouseException;
-=======
 import fr.polytech.schedule.exception.OutsideOfDeliveryHoursException;
 import fr.polytech.schedule.exception.TimeslotUnvailableException;
->>>>>>> add custom exception pns-isa-devops/projet-isa-devops-20-team-b-20#151
+import fr.polytech.schedule.exception.ZeroDronesInWarehouseException;
 import fr.polytech.warehouse.components.DeliveryModifier;
 import fr.polytech.warehouse.exception.UnknownDeliveryException;
 
@@ -33,8 +30,9 @@ public class DeliveryScheduleServiceImpl implements DeliveryScheduleService {
     private DeliveryModifier deliveryModifier;
 
     @Override
-    public void scheduleDelivery(String date, String deliveryId)
-            throws DroneNotFoundException, OutOfWorkingHourTimeSlotException, UnknownDeliveryException, NoFreeDroneAtThisTimeSlotException, ZeroDronesInWarehouseException {
+    public void scheduleDelivery(String date, String deliveryId) throws DroneNotFoundException,
+            OutOfWorkingHourTimeSlotException, UnknownDeliveryException, NoFreeDroneAtThisTimeSlotException,
+            ZeroDronesInWarehouseException, OutsideOfDeliveryHoursException, TimeslotUnvailableException {
         Delivery delivery = deliveryModifier.findDelivery(deliveryId);
         String[] time = date.split(":");
         GregorianCalendar c = new GregorianCalendar();
@@ -44,7 +42,8 @@ public class DeliveryScheduleServiceImpl implements DeliveryScheduleService {
     }
 
     @Override
-    public List<TimeState> getCurrentPlanning(String droneID) throws DroneNotFoundException, ZeroDronesInWarehouseException {
+    public List<TimeState> getCurrentPlanning(String droneID)
+            throws DroneNotFoundException, ZeroDronesInWarehouseException {
         List<TimeState> states = deliveryScheduler.getCurrentPlanning(droneID);
         System.out.println(states);
         return states;
