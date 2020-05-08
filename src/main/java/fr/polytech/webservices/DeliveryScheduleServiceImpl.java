@@ -16,9 +16,6 @@ import fr.polytech.schedule.exception.OutOfWorkingHourTimeSlotException;
 import fr.polytech.schedule.exception.ZeroDronesInWarehouseException;
 import fr.polytech.warehouse.components.DeliveryModifier;
 import fr.polytech.warehouse.exception.UnknownDeliveryException;
-import java.util.List;
-
-import fr.polytech.entities.TimeState;
 
 @WebService(targetNamespace = "http://www.polytech.unice.fr/si/4a/isa/dronedelivery/delivery-schedule")
 @Stateless(name = "DeliveryScheduleWS")

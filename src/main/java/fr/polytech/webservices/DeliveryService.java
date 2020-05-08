@@ -35,7 +35,7 @@ public interface DeliveryService {
          * @throws Exception
          */
         @WebMethod
-        Delivery getNextDelivery() throws DroneNotFoundException;
+        Delivery getNextDelivery();
 
         @WebMethod
         List<Delivery> checkForNewParcels() throws ExternalCarrierApiException, UnknownParcelException;
