@@ -57,7 +57,6 @@ public class DeliveryServiceImpl implements DeliveryService {
         GregorianCalendar c = new GregorianCalendar();
         c.set(GregorianCalendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
         c.set(GregorianCalendar.MINUTE, Integer.parseInt(time[1]));
-        System.out.println(deliveryOrganizer.getNextDelivery(c));
         return deliveryOrganizer.getNextDelivery(c);
     }
 
