@@ -116,7 +116,7 @@
 
 
             <!-- UNCOMMENT TO GENERATE WSDL FROM <className>theWebServiceImpl.java</className> TO <output>dir/theWebServiceWS.wsdl</output>  -->
-            <plugin>
+<!--            <plugin>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-java2ws-plugin</artifactId>
                 <version>${cxf.version}</version>
@@ -141,7 +141,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
 
         </plugins>
