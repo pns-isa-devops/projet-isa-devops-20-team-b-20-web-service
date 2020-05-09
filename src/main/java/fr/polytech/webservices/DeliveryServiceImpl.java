@@ -48,7 +48,9 @@ public class DeliveryServiceImpl implements DeliveryService {
     public Delivery startDelivery(String deliveryId) throws NoDroneAttachOnDeliveryException, ExternalDroneApiException,
             UnknownDeliveryException, NoTimeSlotAttachOnDeliveryException, DroneNotAvailableException {
         Delivery deliveryFromWarehouse = deliveryModifier.findDelivery(deliveryId);
-        return deliveryInitializer.initializeDelivery(deliveryFromWarehouse);
+        deliveryFromWarehouse = deliveryInitializer.initializeDelivery(deliveryFromWarehouse);
+        deliveryFromWarehouse.getDrone();
+        return deliveryFromWarehouse;
     }
 
     @Override
