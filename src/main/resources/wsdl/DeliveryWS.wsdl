@@ -52,7 +52,9 @@
   <xs:complexType name="invoice">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="deliveries" nillable="true" type="tns:delivery"/>
+      <xs:element minOccurs="0" name="emissionDate" type="xs:dateTime"/>
       <xs:element minOccurs="0" name="invoiceId" type="xs:string"/>
+      <xs:element minOccurs="0" name="paymentDate" type="xs:dateTime"/>
       <xs:element name="price" type="xs:float"/>
       <xs:element minOccurs="0" name="status" type="tns:invoiceStatus"/>
     </xs:sequence>
