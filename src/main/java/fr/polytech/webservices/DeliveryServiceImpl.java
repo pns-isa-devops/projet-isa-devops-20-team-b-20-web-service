@@ -57,7 +57,9 @@ public class DeliveryServiceImpl implements DeliveryService {
         GregorianCalendar c = new GregorianCalendar();
         c.set(GregorianCalendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
         c.set(GregorianCalendar.MINUTE, Integer.parseInt(time[1]));
-        return deliveryOrganizer.getNextDelivery(c);
+        Delivery d = deliveryOrganizer.getNextDelivery(c);
+        d.getDrone();
+        return d;
     }
 
     @Override

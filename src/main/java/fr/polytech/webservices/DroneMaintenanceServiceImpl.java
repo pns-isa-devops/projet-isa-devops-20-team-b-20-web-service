@@ -1,6 +1,5 @@
 package fr.polytech.webservices;
 
-
 import fr.polytech.dronepark.components.DroneReviewer;
 import fr.polytech.dronepark.exception.DroneNotFoundException;
 import fr.polytech.dronepark.exception.InvalidDroneIDException;
@@ -34,7 +33,7 @@ public class DroneMaintenanceServiceImpl implements DroneMaintenanceService {
     }
 
     @Override
-    public void chargeDrone(String droneId) throws DroneNotFoundException{
+    public void chargeDrone(String droneId) throws DroneNotFoundException {
         droneReviewer.setDroneInCharge(droneId);
     }
 
@@ -46,6 +45,5 @@ public class DroneMaintenanceServiceImpl implements DroneMaintenanceService {
     @Override
     public void setAvailableDrone(String droneId) throws DroneNotFoundException {
         droneReviewer.setDroneAvailable(droneId);
-
     }
 }
