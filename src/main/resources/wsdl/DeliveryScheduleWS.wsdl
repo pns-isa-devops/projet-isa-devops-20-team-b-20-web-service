@@ -65,6 +65,12 @@
       <xsd:element minOccurs="0" name="message" type="xsd:string"/>
     </xsd:sequence>
   </xsd:complexType>
+  <xsd:element name="DeliveryAlreadyScheduledException" type="tns:DeliveryAlreadyScheduledException"/>
+  <xsd:complexType name="DeliveryAlreadyScheduledException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
   <xsd:element name="OutsideOfDeliveryHoursException" type="tns:OutsideOfDeliveryHoursException"/>
   <xsd:complexType name="OutsideOfDeliveryHoursException">
     <xsd:sequence>
@@ -88,6 +94,10 @@
   </xsd:complexType>
 </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="DeliveryAlreadyScheduledException">
+    <wsdl:part element="ns2:DeliveryAlreadyScheduledException" name="DeliveryAlreadyScheduledException">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="getCurrentPlanning">
     <wsdl:part element="tns:getCurrentPlanning" name="parameters">
     </wsdl:part>
@@ -156,6 +166,8 @@
     </wsdl:fault>
       <wsdl:fault message="tns:ZeroDronesInWarehouseException" name="ZeroDronesInWarehouseException">
     </wsdl:fault>
+      <wsdl:fault message="tns:DeliveryAlreadyScheduledException" name="DeliveryAlreadyScheduledException">
+    </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DeliveryScheduleServiceImplServiceSoapBinding" type="tns:DeliveryScheduleService">
@@ -200,6 +212,9 @@
       </wsdl:fault>
       <wsdl:fault name="ZeroDronesInWarehouseException">
         <soap:fault name="ZeroDronesInWarehouseException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DeliveryAlreadyScheduledException">
+        <soap:fault name="DeliveryAlreadyScheduledException" use="literal"/>
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>

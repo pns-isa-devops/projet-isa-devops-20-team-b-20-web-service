@@ -5,7 +5,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 import java.util.List;
 import fr.polytech.entities.TimeState;
-
+import fr.polytech.schedule.exception.DeliveryAlreadyScheduledException;
 import fr.polytech.schedule.exception.DroneNotFoundException;
 import fr.polytech.schedule.exception.NoFreeDroneAtThisTimeSlotException;
 import fr.polytech.schedule.exception.OutsideOfDeliveryHoursException;
@@ -24,12 +24,13 @@ public interface DeliveryScheduleService {
          * @throws DroneNotFoundException
          * @throws TimeslotUnvailableException
          * @throws OutsideOfDeliveryHoursException
+         * @throws DeliveryAlreadyScheduledException
          * @throws Exception
          */
         @WebMethod
         void scheduleDelivery(@WebParam(name = "date") String date, @WebParam(name = "delivery_id") String deliveryId)
                         throws UnknownDeliveryException, DroneNotFoundException, NoFreeDroneAtThisTimeSlotException,
-                        ZeroDronesInWarehouseException, OutsideOfDeliveryHoursException, TimeslotUnvailableException;
+                        ZeroDronesInWarehouseException, OutsideOfDeliveryHoursException, TimeslotUnvailableException, DeliveryAlreadyScheduledException;
 
         @WebMethod
         List<TimeState> getCurrentPlanning(@WebParam(name = "droneid") String droneID)

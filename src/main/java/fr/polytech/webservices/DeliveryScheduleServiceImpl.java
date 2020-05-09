@@ -10,6 +10,7 @@ import javax.jws.WebService;
 import fr.polytech.entities.Delivery;
 import fr.polytech.entities.TimeState;
 import fr.polytech.schedule.components.DeliveryScheduler;
+import fr.polytech.schedule.exception.DeliveryAlreadyScheduledException;
 import fr.polytech.schedule.exception.DroneNotFoundException;
 import fr.polytech.schedule.exception.NoFreeDroneAtThisTimeSlotException;
 import fr.polytech.schedule.exception.OutsideOfDeliveryHoursException;
@@ -29,9 +30,9 @@ public class DeliveryScheduleServiceImpl implements DeliveryScheduleService {
     private DeliveryModifier deliveryModifier;
 
     @Override
-    public void scheduleDelivery(String date, String deliveryId)
-            throws DroneNotFoundException, UnknownDeliveryException, NoFreeDroneAtThisTimeSlotException,
-            ZeroDronesInWarehouseException, OutsideOfDeliveryHoursException, TimeslotUnvailableException {
+    public void scheduleDelivery(String date, String deliveryId) throws DroneNotFoundException,
+            UnknownDeliveryException, NoFreeDroneAtThisTimeSlotException, ZeroDronesInWarehouseException,
+            OutsideOfDeliveryHoursException, TimeslotUnvailableException, DeliveryAlreadyScheduledException {
         Delivery delivery = deliveryModifier.findDelivery(deliveryId);
         String[] time = date.split(":");
         GregorianCalendar c = new GregorianCalendar();
