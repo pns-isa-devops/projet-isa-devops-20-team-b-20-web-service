@@ -49,20 +49,6 @@ pipeline{
                         }
                     }
                 }
-                stage("Tests") {
-                    steps {
-                        configFileProvider([configFile(fileId: MVN_SETTING_PROVIDER, variable: "MAVEN_SETTINGS")]) {
-                            echo "Unit tests module"
-                            sh "mvn -s $MAVEN_SETTINGS test"
-                        }
-                    }
-                }
-                stage('Mutations') {
-                    steps {
-                        echo 'PiTest Mutation'
-                        sh 'mvn org.pitest:pitest-maven:mutationCoverage'
-                    }
-                }
                 stage("Deploy") {
                     when { expression { BRANCH_NAME ==~ /(master|develop)/ }}
                     steps {
@@ -114,12 +100,6 @@ pipeline{
                             update = "\n - Component can be update : ${params.DEPENDENCY}\n\t${VERSION} -> ${params.UPDATE_VERSION}"
                         }
                     }
-                }
-            }
-            post {
-                always {
-                    archiveArtifacts artifacts: 'target/**/*', fingerprint: true
-                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
