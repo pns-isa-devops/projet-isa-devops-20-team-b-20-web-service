@@ -24,7 +24,7 @@ public interface DeliveryService {
 
         @WebMethod
         @Interceptors({ StatDelivery.class })
-        void startDelivery(@WebParam(name = "delivery_id") String deliveryId)
+        Delivery startDelivery(@WebParam(name = "delivery_id") String deliveryId)
                         throws NoDroneAttachOnDeliveryException, ExternalDroneApiException, UnknownDeliveryException,
                         NoTimeSlotAttachOnDeliveryException, DroneNotAvailableException;
 
