@@ -1,5 +1,6 @@
 package fr.polytech.webservices;
 
+import fr.polytech.dronepark.exception.DroneCannotChangeStateException;
 import fr.polytech.dronepark.exception.DroneNotFoundException;
 import fr.polytech.dronepark.exception.InvalidDroneIDException;
 import fr.polytech.entities.Drone;
@@ -33,14 +34,14 @@ public interface DroneMaintenanceService {
      */
     @WebMethod
     @Interceptors({StatCharge.class})
-    void chargeDrone(@WebParam(name = "drone_id") String droneId) throws DroneNotFoundException;
+    void chargeDrone(@WebParam(name = "drone_id") String droneId) throws DroneNotFoundException, DroneCannotChangeStateException;
 
     /**
      * Set the drone with the id drone_id in review mode
      */
     @WebMethod
     @Interceptors({StatMaintenance.class})
-    void reviewDrone(@WebParam(name = "drone_id") String droneId) throws DroneNotFoundException;
+    void reviewDrone(@WebParam(name = "drone_id") String droneId) throws DroneNotFoundException, DroneCannotChangeStateException;
 
     /**
      * Set the drone with the id drone_id available
